@@ -11,6 +11,7 @@ public class ReserveTimeVo {
 	int movieCount;
 	int screenCode;
 	int movieCode;
+	String movieName;
 	
 	public String getTimeCode() {
 		return timeCode;
@@ -54,14 +55,26 @@ public class ReserveTimeVo {
 	public void setMovieCode(int movieCode) {
 		this.movieCode = movieCode;
 	}
+	public Date getMovieDate() {
+		return movieDate;
+	}
+	public void setMovieDate(Date movieDate) {
+		this.movieDate = movieDate;
+	}
+	public String getMovieName() {
+		return movieName;
+	}
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
 	
 	@Override
 	public String toString() {
 		return "ReserveTimeVo [timeCode=" + timeCode + ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", movieTime=" + movieDate + ", movieCount=" + movieCount + ", screenCode=" + screenCode
-				+ ", movieCode=" + movieCode + "]";
+				+ ", movieDate=" + movieDate + ", movieCount=" + movieCount + ", screenCode=" + screenCode
+				+ ", movieCode=" + movieCode + ", movieName=" + movieName + "]";
 	}
-	
+
 	
 }
 
