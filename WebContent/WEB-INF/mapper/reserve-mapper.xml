@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reserve">
+	<select id="main" resultType="com.model.ReserveTimeVo" parameterType="java.util.HashMap">
+		select 
+			d.timecode,
+			to_char(starttime, 'HH24:MI') as starttime,
+			to_char(endtime, 'HH24:MI') as endtime,
+			d.moviedate,
+			d.moviecount,
+			d.screencode,
+			d.moviecode
+		from
+			reserve_time d
+		where
+			starttime >= to_date(#{todate}, 'yyyy/mm/dd HH24:MI')
+		and
+			moviedate = to_date(#{todate}, 'yyyy/mm/dd')
+	</select>
+
+</mapper>
