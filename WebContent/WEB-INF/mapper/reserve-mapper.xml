@@ -4,8 +4,8 @@
 	<select id="main" resultType="com.model.ReserveTimeVo" parameterType="java.util.HashMap">
 		select 
 			d.timecode,
-			to_char(starttime, 'HH24:MI') as starttime,
-			to_char(endtime, 'HH24:MI') as endtime,
+			to_char(starttime, 'HH24:MI') as startTime,
+			to_char(endtime, 'HH24:MI') as endTime,
 			d.moviedate,
 			d.moviecount,
 			d.screencode,
@@ -13,9 +13,12 @@
 		from
 			reserve_time d
 		where
-			starttime >= to_date(#{todate}, 'yyyy/mm/dd HH24:MI')
+			starttime >= to_date(#{thisTime}, 'yyyy/mm/dd HH24:MI')
 		and
-			moviedate = to_date(#{todate}, 'yyyy/mm/dd')
+			moviedate = to_date(#{toDay}, 'yyyy/mm/dd')
+		order by
+			moviecount asc
+		
 	</select>
 
 </mapper>

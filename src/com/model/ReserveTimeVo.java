@@ -5,9 +5,9 @@ import java.sql.Date;
 public class ReserveTimeVo {
 
 	String timeCode;
-	Date startTime;
-	Date endTime;
-	Date movieTime;
+	String startTime;
+	String endTime;
+	Date movieDate;
 	int movieCount;
 	int screenCode;
 	int movieCode;
@@ -18,23 +18,23 @@ public class ReserveTimeVo {
 	public void setTimeCode(String timeCode) {
 		this.timeCode = timeCode;
 	}
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 	public Date getMovieTime() {
-		return movieTime;
+		return movieDate;
 	}
 	public void setMovieTime(Date movieTime) {
-		this.movieTime = movieTime;
+		this.movieDate = movieTime;
 	}
 	public int getMovieCount() {
 		return movieCount;
@@ -58,7 +58,7 @@ public class ReserveTimeVo {
 	@Override
 	public String toString() {
 		return "ReserveTimeVo [timeCode=" + timeCode + ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", movieTime=" + movieTime + ", movieCount=" + movieCount + ", screenCode=" + screenCode
+				+ ", movieTime=" + movieDate + ", movieCount=" + movieCount + ", screenCode=" + screenCode
 				+ ", movieCode=" + movieCode + "]";
 	}
 	

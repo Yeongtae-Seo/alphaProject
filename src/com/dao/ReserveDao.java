@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,4 +20,5 @@ public class ReserveDao {
 		
 		return template.selectList("reserve.main", map);
 	}
+
 }
