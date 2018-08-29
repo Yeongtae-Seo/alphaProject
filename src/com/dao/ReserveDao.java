@@ -21,4 +21,9 @@ public class ReserveDao {
 		return template.selectList("reserve.main", map);
 	}
 
+	public ReserveTimeVo getReserveTime(String reserveCode) {
+		
+		return template.selectOne("reserve.getReserve", reserveCode);
+	}
+
 }

@@ -56,11 +56,48 @@ public class ReserveController {
 	}
 	
 	@RequestMapping("/selectSeat.do")
-	public ModelAndView selectSeat(@ModelAttribute ReserveTimeVo list) {
+	public ModelAndView selectSeat(@RequestParam String reserveCode) {
 		ModelAndView mav = new ModelAndView();
+		ReserveTimeVo reserveVo = reserveDao.getReserveTime(reserveCode);
+		System.out.println(reserveVo);
+		mav.addObject("selectMovie", reserveVo);
 		mav.setViewName("selectSeat");
 		return mav;
 	}
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -17,7 +17,7 @@
 		<c:forEach items="${timeList }" var="list">
 			<c:choose>
 				<c:when test="${list.screenCode == 10 }">
-					<a href="/reserve/selectSeat.do?reserve">
+					<a href="/reserve/selectSeat.do?reserveCode=${list.timeCode }">
 						<button class="w3-button w3-border w3-hover-light-grey" >${list.movieName}<hr/>${list.startTime }</button>
 					</a>
 				</c:when>
