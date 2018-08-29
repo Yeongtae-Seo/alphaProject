@@ -31,33 +31,33 @@ public class CustomerDao {
 		template.update("customer.updateCustomer", vo);  
 	}
 	
-	//4.ī�װ��� �˻�
+	//4.카테고리별 데이터 가져오기
 	public List<CustomerVo> getCategory(String category){
 		return template.selectList("customer.getCategory", category);  
 	}
 	
-	//5.��ü ���� ��� ��������
+	//5.전체 데이터 가져오기
 	public List<CustomerVo> getAll(){
 		return template.selectList("customer.getAll");  
 	}
 	
-	//6.top5�� ��������
+	//6.top5만 가져오기
 	public List<CustomerVo> getTop5(){
 		return template.selectList("customer.getTop5");
 	}
 	
-	//7.ī�װ� 
+	//7.카테고리별 데이터 갯수(특정 카테고리의 데이터 갯수)
 	public List getCateCount() {
 		return template.selectList("customer.getCateCount");
 	}
 	
-	//8.��ü ī�װ� ����
+	//8.전체 데이터 갯수(전체 카테고리의 데이터 갯수) 
 	public int getAllCount() {
 		return template.selectOne("customer.getAllCount");
 	}
 	
-	//9
-	public List<CustomerVo> getPage(Map data) {
-		return template.selectList("customer.getPage",data);
+	//9.views(조회수 증가)
+	public int addCount(int num) {
+		return template.update("customer.addCount", num);  
 	}
 }

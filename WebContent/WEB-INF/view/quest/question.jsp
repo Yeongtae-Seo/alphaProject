@@ -28,14 +28,18 @@
 				<tr>
 					<td><input type="checkbox"></td>
 					<td>${qvo.writer }</td>
-					<td><a href="/message/show.do?no=${qvo.num }" target="_blank">
+					<td><a href="/question/show.do?no=${qvo.num }" style= "text-decoration:none" >
 						<c:set var="ct" value="${fn:escapeXml(qvo.title) }" />
 						<c:choose>
 							<c:when test="${fn:length(ct) gt 21 }">
-							${fn:substring(ct,0,21) }··
+							${fn:substring(ct,0,21) }··<c:if test="${qvo.cnt ne 0 }">
+							<span>💬</span>
+							</c:if>
 							</c:when>
 							<c:otherwise>
-							${ct }
+							${ct }<c:if test="${qvo.cnt ne 0 }">
+							<span>💬</span>
+							</c:if>
 							</c:otherwise>
 						</c:choose>
 						</a>
@@ -46,10 +50,22 @@
 		</table>
 		</br>
 		<div class="w3-bar" align="center">
-			<a href="#" class="w3-button">&laquo;</a> <a href="#"
-				class="w3-button">1</a> <a href="#" class="w3-button">2</a> <a
-				href="#" class="w3-button">3</a> <a href="#" class="w3-button">4</a>
-			<a href="#" class="w3-button">&raquo;</a>
+			<c:if test = "${page.page ne 1}" >
+				<a href="/question/send.do?num=${page.minpage-5}" ><button type="button" class="w3-button w3-black w3-round-large">◀</button></a>
+			</c:if>
+			<c:forEach var="i" begin="${page.minpage }" end="${page.maxpage }">
+				<c:choose>
+					<c:when test="${i eq page.num }">
+						<span class="w3-button">${i }</span>
+					</c:when>
+					<c:otherwise>
+						<a href="/question/send.do?num=${i }" class="w3-button"><span>${i}</span></a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test = "${page.maxpage lt page.max}" >
+				<a href="/question/send.do?num=${page.maxpage+1}"><button type="button" class="w3-button w3-black w3-round-large">▶</button></a>
+			</c:if>
 		</div>
 	</div>
 	<div class="w3-container w3-col s2"></div>

@@ -35,7 +35,7 @@ h1,h2,h3,h4,h5,h6 {
 				href="#menu" class="w3-bar-item w3-button">Menu</a> <a
 				href="#contact" class="w3-bar-item w3-button">Contact</a> -->
 			<c:choose>
-				<c:when test="${!empty sessionScope.auth}">s
+				<c:when test="${!empty sessionScope.auth}">
 					<a id="navA" href="/logout.do" class="w3-bar-item w3-button">Logout</a>
 					<a id="navA" href="/info.do" class="w3-bar-item w3-button">InFo</a>
 					<a id="navA" href="/customer/center.do" class="w3-bar-item w3-button">Customer</a>

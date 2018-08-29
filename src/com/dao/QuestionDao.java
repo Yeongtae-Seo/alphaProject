@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.model.AnswerVo;
 import com.model.QuestionFileVo;
 import com.model.QuestionVo;
 
@@ -33,14 +34,20 @@ public class QuestionDao {
 		return template.selectList("question.getQuestionByReceiver", map);
 	}
 
-	public List<QuestionFileVo> getQuestionFileByParent(int no) {
-		return template.selectList("question.getQuestionFileByParent", no);
+	public QuestionFileVo getQuestionFileByParent(int no) {
+		return template.selectOne("question.getQuestionFileByParent", no);
 	}
 	
 	public QuestionVo getQuestionByNo(int no) {
 		return template.selectOne("question.getQuestionByNo", no);
 	}
 	
+	public int getQuestionByReceiverCount(String id) {
+		return template.selectOne("question.getQuestionByReceiverCount",id);
+	}
 	
+	public List<AnswerVo> getAnswerParent(int no) {
+		return template.selectList("question.getAnswerParent",no);
+	}
 	
 }

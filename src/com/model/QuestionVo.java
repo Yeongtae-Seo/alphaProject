@@ -9,7 +9,14 @@ public class QuestionVo {
 	String writer;
 	Date regdate;
 	String receiver;
+	int cnt;
 	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getNum() {
 		return num;
 	}

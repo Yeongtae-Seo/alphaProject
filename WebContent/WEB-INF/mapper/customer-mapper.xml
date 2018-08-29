@@ -30,7 +30,7 @@
 	
 	<!-- 6.top5만 가져오기 -->
 	<select id="getTop5" resultType="com.model.CustomerVo">
-		select * from (select * from customer order by count asc) where rownum &lt;= 5 
+		select * from(select * from customer order by count desc) where rownum &lt;=5
 	</select>
 
 	<!-- 7.카테고리별 데이터 갯수(특정 카테고리의 데이터 갯수)  -->
@@ -43,9 +43,9 @@
 		select count(*) from customer
 	</select>
 	
-	<!-- 페이징 처리..? 
-	<select id="getPage" parameterType="java.util.Map" resultType="com.model.CustomerVo">
-		select * from(select rownum r ,c.* from customer c) where r between #{a} and #{b}
-	</select>
-	-->
+	<!-- 9.views(조회수 증가) -->
+	<update id="addCount" parameterType="java.lang.Integer">
+		update customer set count=count+1 where num=#{num}
+	</update>
+	
 </mapper>

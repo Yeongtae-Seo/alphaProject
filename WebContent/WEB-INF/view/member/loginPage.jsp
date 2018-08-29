@@ -8,7 +8,7 @@
 <div align="center">
 	<h1>Login</h1>
 	<br /> <br />
-	<form action="<c:url value="/logining.do" />" method="post">
+	<form action="<c:url value="/logining.do" />" method="post" autocomplete="off">
 		<div align="center" style="width: 500px">
 			<p>
 				- Email <input class="w3-input w3-hover-black" type="text"
@@ -24,7 +24,7 @@
 		</div>
 
 		<p>
-			<input type="checkbox" id="keep">keep logged in &nbsp;&nbsp;
+			<input type="checkbox" name="keep">keep logged in &nbsp;&nbsp;
 			<button class="w3-button w3-black w3-round-large" type="submit"
 				id="signin">Sign in</button>
 		</p>

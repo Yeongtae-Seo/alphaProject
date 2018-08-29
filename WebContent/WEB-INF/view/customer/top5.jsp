@@ -2,45 +2,69 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <style>
-table {
-	border-top: 1px solid #444444;
-	width: 40%;
+.menu a {
+	cursor: pointer;
+	background-color: #ffffff;
+	border-bottom: 1px solid #cccccc;
 }
 
-td {
-	border-bottom: 1px solid #cccccc;
-	padding: 10px;
+.menu .hide {
+	display: none;
+	background-color: #e6e6e6;
+}
+
+ul {
+	list-style-type: none;
+	width: 45%;
+	vertical-align: baseline;
+}
+
+div.t {
+	margin: 5px;
+	border: 5px;
+}
+
+#cateId {
+	text-align: left;
+}
+
+span#ex {
+	display: inline-block;
+	vertical-align: middle;
+	width: 155px;
+	font-weight: bold;
+}
+
+span {
+	display: inline-block;
+	vertical-align: middle;
+	width: 155px;
+}
+
+.top {
+	width: 43%;
 }
 </style>
+
 <div style="height: 50px"></div>
 <!-- 상단 여백 -->
-<h4>자주 묻는 질문 TOP5</h4>
-<table>
-	<c:forEach var="t" items="${top}" varStatus="top">
-		<tr>
-		<td>${t.category }</td>
-			<td><div class="w3-dropdown-click">
-					<button onclick="myFunction('top_${top.index }')"
-						class="w3-button w3-white">${t.title}</button>
-					<div id="top_${top.index }"
-						class="w3-dropdown-content w3-border">
-						<div class="w3-bar-item w3-button">${t.content}</div>
-					</div>
-				</div></td>
-		</tr>
-	</c:forEach>
-</table>
 
-<script>
-	//질문 누르면 답변이 열림, 조회수 증가도 여기서 해야 하나?
-	function myFunction(target) {
-		var x = document.getElementById(target);
-		if (x.className.indexOf("w3-show") == -1) {
-			x.className += " w3-show";
-		} else {
-			x.className = x.className.replace(" w3-show", "");
-		}
-	}
-</script>
+<div class="w3-border-bottom top w3-border-dark-grey">
+	<h4>자주 묻는 질문 TOP5</h4>
+</div>
+<div>
+	<ul>
+		<c:forEach var="t" items="${top}" varStatus="top">
+			<li id="cateId" class="menu">
+				<div class="t w3-border-bottom w3-padding-16" value="${t.num }">
+					<span id="ex">${t.category }</span>${t.title }</div>
+				<div
+					class="hide w3-container w3-padding-24 w3-border-bottom w3-light-grey">${t.content }</div>
+			</li>
+		</c:forEach>
+	</ul>
+</div>

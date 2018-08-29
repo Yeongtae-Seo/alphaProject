@@ -2,7 +2,7 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<insert id="addMember" parameterType="com.model.MemberVo">
-		insert into employee values(#{email},#{pass},#{name},#{phone},#{address}
+		insert into member values(#{email},#{pass},#{name},#{phone},#{address}
 		,#{birth}, 0, 1)
 	</insert>
 	<select id="findByEmailAndPass" parameterType="java.util.HashMap"
@@ -13,6 +13,12 @@
 		select member_seq.nextval from dual
 	</select>
 	<select id="findByEmail" resultType="java.lang.Integer" parameterType="java.lang.String">
-		select count (*) from member where email=#{check}
+		select count (*) from member where email=#{echeck}
+	</select>
+	<select id="findByPhone" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select count (*) from member where phone=#{pcheck}
+	</select>
+	<select id="cookieVo" resultType="com.model.MemberVo" parameterType="java.lang.String">
+		select * from member where email=#{email}
 	</select>
 </mapper>

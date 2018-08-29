@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+		
+		<!-- 영화 페이지 -->
+		<definition name="movie" template="/WEB-INF/view/movie/movieList.jsp">
+			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
+			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
+			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
+			<put-attribute name="movieContent" value="/WEB-INF/view/movie/movieContent.jsp"/>			
+		</definition>	
+</tiles-definitions>

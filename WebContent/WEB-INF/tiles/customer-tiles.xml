@@ -4,26 +4,30 @@
 		
 		<!-- 고객 센터 페이지 -->
 		<definition name="customer" template="/WEB-INF/view/customer/center.jsp">
-			<put-attribute name="navbar" value="/WEB-INF/view/customer/nav.jsp"/>
+			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
+			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
+			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
 			<put-attribute name="customTitle" value="/WEB-INF/view/customer/customTitle.jsp"/>
 			<put-attribute name="top5" value="/WEB-INF/view/customer/top5.jsp"/>
 			<put-attribute name="faq" value="/WEB-INF/view/customer/faq.jsp"/>
 		</definition>
 		
-		<!-- 회원 페이지 -->
-		<definition name="member" template="/WEB-INF/view/customer/center.jsp">
-			<put-attribute name="navbar" value="/WEB-INF/view/customer/nav.jsp"/>
+		<!-- 카테고리 페이지 -->
+		<definition name="category" template="/WEB-INF/view/customer/center.jsp">
+			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
+			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
+			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
 			<put-attribute name="customTitle" value="/WEB-INF/view/customer/customTitle.jsp"/>
 			<put-attribute name="top5" value="/WEB-INF/view/customer/top5.jsp"/>
-			<put-attribute name="faq" value="/WEB-INF/view/customer/member.jsp"/>
+			<put-attribute name="faq" value="/WEB-INF/view/customer/category.jsp"/>
 		</definition>
 		
-		<!-- 온라인 페이지 -->
-		<definition name="online" template="/WEB-INF/view/customer/center.jsp">
-			<put-attribute name="navbar" value="/WEB-INF/view/customer/nav.jsp"/>
-			<put-attribute name="customTitle" value="/WEB-INF/view/customer/customTitle.jsp"/>
-			<put-attribute name="top5" value="/WEB-INF/view/customer/top5.jsp"/>
-			<put-attribute name="faq" value="/WEB-INF/view/customer/online.jsp"/>
+		<!-- 작성 페이지 -->
+		<definition name="writeFaq" template="/WEB-INF/view/customer/writeFaq.jsp">
+			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
+			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
+			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
 		</definition>
+	
 		
 </tiles-definitions>

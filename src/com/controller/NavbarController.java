@@ -25,12 +25,6 @@ public class NavbarController {
 		return "loginPage";
 	}
 	
-	@RequestMapping("/logout.do")		
-	public String logout(HttpSession session) {
-		session.setAttribute("auth", null);
-		return "mainPage";
-	}
-	
 	@RequestMapping("/info.do")
 	public ModelAndView infoHandle(@RequestParam int num, int page, int viewPage) {				// 공지 사항 페이지로 이동하는 메소드
 		ModelAndView mav = new ModelAndView();

@@ -7,22 +7,22 @@
 <div align="center">
 	<h1>Account</h1>
 	<br />
-	<form class="w3-container" action="/joinHandle.do" method="post">
+	<form class="w3-container" action="/joinHandle.do" method="post" autocomplete="off">
 		<div align="center" style="width: 500px">
 			<label>- Email</label>
-			<input class="w3-input" type="text" name="email" id="email" required />
+			<input class="w3-input" type="text" name="email" id="email" placeholder="xxx@email.com" required />
 			<span id="emailCheck"></span>	<!-- id 똑같으면 안 됨 이메일형식맞는지 알림 -->
 			<label>- Password</label><br/>
 			<small>(숫자와 문자 포함 6자리 이상 입력)</small>
-			<input class="w3-input" type="password" name="pass" id="pass" required />
+			<input class="w3-input" type="password" name="pass" id="pass" placeholder="비밀번호 입력" required />
 			<span id="passCheck"></span>
 			<label>-Name</label>
-			<input class="w3-input" type="text" name="name" required />
+			<input class="w3-input" type="text" name="name" placeholder="이름 입력" required />
 			<label>-Phone</label>
-			<input class="w3-input" type="text" name="phone" id="phone" required />
+			<input class="w3-input" type="text" name="phone" id="phone" placeholder="ex)010-XXXX-XXXX" required />
 			<span id="phoneCheck"></span>
 			<label>- Address</label>
-			<input class="w3-input" type="text" name="address" id="addr" onclick="sample4_execDaumPostcode()" />
+			<input class="w3-input" type="text" name="address" id="addr" placeholder="주소 입력 클릭" onclick="sample4_execDaumPostcode()" />
 			<label>- Birth</label>
 			<input class="w3-input" type="date" name="birth" required />
 		</div>
@@ -74,18 +74,41 @@
 			$("#passCheck").html("비밀번호 형식에 맞지 않습니다.<br/><br/>")	
 		}
 	});
+		
 	
-	$("#phone").on("change", function() {
-		console.log($(this).val())
-		$("phoneCheck").html("");
-		if(phoneRule.test($(this).val())) {
-			$("#phoneCheck").css("color", "green");
-			$("#phoneCheck").html("사용가능한 폰번호 입니다.<br/><br/>")
-		}else {
-			$("#phoneCheck").css("color", "red");
-			$("#phoneCheck").html("폰번호 형식에 맞지 않습니다.<br/><br/>")	
-		}
-	});
+	$("#phone").on("change", function() {	// id 가져올때는 #을 붙여
+		$("#phoneCheck").html("");	// #emailCheck는 span id
+	if (phoneRule.test($(this).val())) {
+		$.ajax({
+			"url" : "/phoneCheckHandle.do",
+			"method" : "post",
+			"data" : {
+				"echeck" : $(this).val()
+			}
+		}).done(function(r) {
+			var rCheck = r.rst;
+			if(rCheck == "YYYY") {
+				$("#phoneCheck").css("color", "green");
+				$("#phoneCheck").html("사용가능한 번호 입니다.<br/><br/>");
+			}else {
+				$("#phoneCheck").css("color", "red");
+				$("#phoneCheck").html("이미 사용중인 번호 입니다.<br/><br/>");
+			}
+		}).fail(function(r) {
+			console.log(r);
+		});
+	} else {
+		$("#phoneCheck").css("color", "red");
+		$("#phoneCheck").html("폰번호 형식에 맞지 않습니다.<br/><br/>");
+	}
+});
+	
+	
+	
+	
+	
+	
+	
 	
 </script>
 

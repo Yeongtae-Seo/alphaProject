@@ -9,7 +9,7 @@ public class MemberVo {
 	String phone;
 	String address;
 	Date birth;
-	
+	int grade;
 	public String getEmail() {
 		return email;
 	}
@@ -17,7 +17,7 @@ public class MemberVo {
 		this.email = email;
 	}
 	public String getPass() {
-		return pass; 
+		return pass;
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
@@ -46,14 +46,18 @@ public class MemberVo {
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 	
 	@Override
 	public String toString() {
-		return "memberVo [email=" + email + ", pass=" + pass + ", name=" + name + ", phone=" + phone + ", address="
-				+ address + ", birth=" + birth + "]";
+		return "MemberVo [email=" + email + ", pass=" + pass + ", name=" + name + ", phone=" + phone + ", address="
+				+ address + ", birth=" + birth + ", grade=" + grade + "]";
 	}
-	
-	
 	
 	
 }

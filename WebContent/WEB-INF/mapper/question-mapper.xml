@@ -11,15 +11,20 @@
 		insert into question_file values(question_file_seq.nextval,#{fname},#{fsize},#{furl},#{parent})
 	</insert>
 	<select id="getQuestionByReceiver" resultType="com.model.QuestionVo" parameterType="java.util.Map">
-		select qr.* from(select rownum r,q.* from(select * from QUESTION where WRITER=#{writer} order by num desc)q)qr where qr.r between #{num}-'9' and #{num}
+		select a.*, b.cnt from (select qr.* from(select rownum r,q.* from(select * from QUESTION where WRITER=#{writer} order by num desc)q)qr where qr.r between #{num}*10-9 and #{num}*10) a left join (select parent, Count(*) cnt from answer group by parent) b on a.num = b.parent
+		
+		<!-- select qr.* from(select rownum r,q.* from(select * from QUESTION where WRITER=#{writer} order by num desc)q)qr where qr.r between #{num}*10-9 and #{num}*10 -->
 	</select>
 	<select id="getQuestionByReceiverCount" resultType="java.lang.Integer" parameterType="com.model.QuestionVo">
-		select qr.* from(select rownum r,q.* from(select * from QUESTION where WRITER=#{writer} order by num desc)q)qr
+		select count(*) from(select rownum r,q.* from(select * from QUESTION where WRITER=#{writer} order by num desc)q)qr
 	</select>
 	<select id="getQuestionByNo" resultType="com.model.QuestionVo" parameterType="java.lang.Integer">
-		select * from question where no=#{no}
+		select * from question where num=#{no}
 	</select>
 	<select id="getQuestionFileByParent" resultType="com.model.QuestionFileVo" parameterType="java.lang.Integer">
 		select * from question_file where parent=#{no}
+	</select>
+	<select id="getAnswerParent" resultType="com.model.AnswerVo" parameterType="java.lang.Integer">
+		select * from answer where parent=#{no}
 	</select>
 </mapper>

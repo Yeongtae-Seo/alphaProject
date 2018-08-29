@@ -2,16 +2,16 @@ package com.model;
 
 import java.util.Date;
 
-//°í°´ ¼¾ÅÍ 
+//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 
 public class CustomerVo {
 
-	int num;	//±Û ¹øÈ£
-	String title;  //±Û Á¦¸ñ
-	String content;  //±Û ³»¿ë
-	Date regdate;	//±Û ÀÛ¼ºÀÏ
-	String category;  //Ä«Å×°í¸®
-	int count;		//Á¶È¸¼ö top5 È®ÀÎ¿ë
+	int num;	
+	String title;  
+	String content;  
+	Date regdate;	
+	String category;  
+	int count;		
 
 	
 	//---------------------------------------------------------------------------------------------------------
