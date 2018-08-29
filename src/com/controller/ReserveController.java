@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,4 +54,13 @@ public class ReserveController {
 		mav.setViewName("reserveMainPage");
 		return mav;
 	}
+	
+	@RequestMapping("/selectSeat.do")
+	public ModelAndView selectSeat(@ModelAttribute ReserveTimeVo list) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("selectSeat");
+		return mav;
+	}
+	
+	
 }

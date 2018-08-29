@@ -88,6 +88,13 @@
 		<constructor-arg name="mongoClient" ref="mongo" />
 		<constructor-arg name="databaseName" value="mgr" />
 	</bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/reserve/selectSeat.do"/>
+			<bean class="com.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
 
 

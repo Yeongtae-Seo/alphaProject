@@ -8,7 +8,7 @@
 	<h2>영 화 예 매</h2>
 	<div style="background-color:#FAF4C0;">
 		<c:forEach var="day" begin="${selectDay }" end="20180831" step="1" >
-			<a href="/reserve/page.do?day=${day }"><button class="w3-button w3-hover-light-grey" >${day } </button></a>
+			<a href="/reserve/page.do?day=${day }"><button class="w3-button w3-hover-light-grey" >${day%201808 } </button></a>
 		</c:forEach>
 	</div>
 	<div >
@@ -17,7 +17,9 @@
 		<c:forEach items="${timeList }" var="list">
 			<c:choose>
 				<c:when test="${list.screenCode == 10 }">
-					<button class="w3-button w3-border w3-hover-light-grey" >${list.movieName}<hr/>${list.startTime }</button>
+					<a href="/reserve/selectSeat.do?reserve">
+						<button class="w3-button w3-border w3-hover-light-grey" >${list.movieName}<hr/>${list.startTime }</button>
+					</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
@@ -48,7 +50,6 @@
 				</c:when>
 			</c:choose>
 		</c:forEach>
-
 	</div>
 	
 </div>
