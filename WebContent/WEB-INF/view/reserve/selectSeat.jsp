@@ -10,7 +10,7 @@
 
 	<c:forEach begin="1" end="10" var="j" step="1">
 		<c:forEach begin="1" end="10" var="i" step="1">
-			<input type="checkbox" value="${j }-${i }" />
+			<input type="checkbox" value="${j }-${i }" name="${j }-${i }" />
 			<c:if test="${i == 10 }">
 				<br/>
 			</c:if>
