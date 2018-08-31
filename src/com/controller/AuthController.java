@@ -20,6 +20,7 @@ import org.springframework.web.util.WebUtils;
 import com.dao.MemberDao;
 import com.google.gson.Gson;
 import com.model.MemberVo;
+import com.service.AuthConfig;
 import com.service.Converter;
 
 @Controller
@@ -29,12 +30,21 @@ public class AuthController {
 	MemberDao memberDao;
 	@Autowired
 	Gson gson;
+	@Autowired
+	AuthConfig auth;
 	
 	@RequestMapping("/logining.do")	// do는 컨트롤러로 갈 때
 	public ModelAndView loginHandle(@RequestParam Map map, HttpSession session, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(map);
 		MemberVo vo = memberDao.findByEmailAndPass(map);
+		if(auth.map.containsKey(vo.getEmail())) {
+			((HttpSession) auth.map.get(vo.getEmail())).invalidate();
+			auth.map.put(vo.getEmail(), session);
+		}else {
+			auth.map.put(vo.getEmail(), session);
+		}
+
 		if(vo != null) {
 			session.setAttribute("auth", vo);	// 로그인 성공하면 세션에 넣어두기
 			mav.setViewName("mainPage");		// mainpage로 이동
@@ -44,6 +54,8 @@ public class AuthController {
 					cookie.setMaxAge(60 * 60 * 24 * 30);
 					response.addCookie(cookie);
 			}
+
+				
 		}else {
 			// mav.addObject("{\"fail\": \"email이나 password가 바르지 않습니다.\"}");
 			mav.addObject("fail", "로그인 실패"); 
@@ -56,6 +68,7 @@ public class AuthController {
 	@RequestMapping("/logout.do")	// 로그아웃		
 	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		
+		MemberVo vo = (MemberVo) session.getAttribute("auth");
 		session.setAttribute("auth", null);	// 세션을 날림
 			// 쿠키를 가져와보고
 			Cookie loginCookie = WebUtils.getCookie(request, "keep");
@@ -67,6 +80,7 @@ public class AuthController {
 				// 쿠키 설정을 적용
 				response.addCookie(loginCookie);
 			}
+			session.invalidate();
 //		}
 		return "mainPage";
 	}

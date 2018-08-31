@@ -91,7 +91,11 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/reserve/selectSeat.do"/>
+			<mvc:mapping path="/reserve/*"/>
+			<bean class="com.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/question/*"/>
 			<bean class="com.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
