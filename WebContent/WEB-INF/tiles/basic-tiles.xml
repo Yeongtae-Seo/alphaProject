@@ -33,43 +33,45 @@
 			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
 			<put-attribute name="contents" value="/WEB-INF/view/info/readInfo.jsp" />
 		</definition>
-		<!-- 로그인 페이지 -->
-
-		<definition name="loginPage" template="/WEB-INF/view/layout.jsp">
-			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
-			<put-attribute name="contents" value="/WEB-INF/view/main/loginPage.jsp"/>
-		</definition>
 		
-		<!-- 공지사항 쓰기 페이지 -->
-		<definition name="writeInfo" template="/WEB-INF/view/layout.jsp">
-			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp" />
-			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
-			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
-			<put-attribute name="contents" value="/WEB-INF/view/info/writeInfo.jsp" />
-		</definition>
-		
-		<!-- 공지사항 이동 실패 -->
-		<definition name="infoPageError" template="/WEB-INF/view/layout.jsp">
-			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp" />
-			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
-			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
-			<put-attribute name="contents" value="/WEB-INF/view/info/infoError.jsp" />
-		</definition>
-		
-	<!-- 	<definition name="board.list" extends="board">
-			<put-attribute name="contents" value="/WEB-INF/view/board/list.jsp"/>
-		</definition>
-		
-		<definition name="board.write" extends="board">
-			<put-attribute name="contents" value="/WEB-INF/view/board/write.jsp"/>
-		</definition>
-		
-		
-		선택사항 이지만 el을 인식하기 때문에 좀 더 쉬운 처리가 가능할 수도 있음
-		<definition name="el.board" template="/WEB-INF/view/layout.jsp">
-			<put-attribute name="nav" value="/WEB-INF/view/board/nav.jsp"/>
-			<put-attribute name="side" value="/WEB-INF/view/board/side.jsp"/>
-			<put-attribute name="contents" expression="${requestScope.contents}"/>  
-			el 쓰려면 mvn에서 tiles el support 검색해서 라이브러리 추가(타일즈 풀버전은 상관없음)
-		</definition> -->
 </tiles-definitions>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

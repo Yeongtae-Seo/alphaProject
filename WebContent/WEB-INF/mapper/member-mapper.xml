@@ -21,4 +21,11 @@
 	<select id="cookieVo" resultType="com.model.MemberVo" parameterType="java.lang.String">
 		select * from member where email=#{email}
 	</select>
+	<update id="changeAll" parameterType="com.model.MemberVo">	<!-- 하나 아니면 무조건 map이나 vo -->
+		update member set pass=#{pass},name=#{name},phone=#{phone},address=#{address} where email=#{email}
+	</update>	<!-- pass1=#{pass2} 1은 DB 컬럼명과 똑같이 2는 vo와 똑같이 -->
+	
+	<delete id="memberDel">	<!-- id는 dao에서 어떤거 쓸지 똑같이 -->
+		delete from member where email=#{email}	<!-- 지울때는 primary 나 unique -->
+	</delete>
 </mapper>

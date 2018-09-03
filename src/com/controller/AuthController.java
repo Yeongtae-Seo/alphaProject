@@ -3,6 +3,7 @@ package com.controller;
 import java.sql.Date;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,8 +31,10 @@ public class AuthController {
 	MemberDao memberDao;
 	@Autowired
 	Gson gson;
+
 	@Autowired
 	AuthConfig auth;
+
 	
 	@RequestMapping("/logining.do")	// do는 컨트롤러로 갈 때
 	public ModelAndView loginHandle(@RequestParam Map map, HttpSession session, HttpServletResponse response) {
@@ -47,6 +50,9 @@ public class AuthController {
 
 		if(vo != null) {
 			session.setAttribute("auth", vo);	// 로그인 성공하면 세션에 넣어두기
+			
+			// context.setAttribute(vo.getEmail(), true);
+			
 			mav.setViewName("mainPage");		// mainpage로 이동
 				if(map.get("keep") != null && map.get("keep").equals("on")) {	// 쿠키
 					Cookie cookie = new Cookie("keep", vo.getEmail());
@@ -86,15 +92,22 @@ public class AuthController {
 	}
 
 	@RequestMapping("/joinHandle.do")	// joinPage에서 submit하면 얘를 찾아와서 실행, 회원가입
-	public ModelAndView joinHandle(@ModelAttribute MemberVo memberVo) {
+	public ModelAndView joinHandle(@ModelAttribute MemberVo memberVo, @RequestParam String hemail, String hpass, String hphone) {
 		ModelAndView mav = new ModelAndView();
+		System.out.println(hemail + "/" + hpass + "/" + hphone);
 		Converter converter = new Converter();
 		Date birth = converter.convertToDate(String.valueOf(memberVo.getBirth()));
 		memberVo.setBirth(birth);
 		System.out.println(memberVo);
-		memberDao.addMember(memberVo);
-		mav.setViewName("loginPage");
-		
+		int md = 0;
+		if(hemail.equals("a") && hpass.equals("a") && hphone.equals("a")) {
+			md = memberDao.addMember(memberVo);
+		}
+		if(md == 1) {
+			mav.setViewName("joinSucc");
+		}else {
+			mav.setViewName("joinErr");
+		}
 		return mav;
 	}
 	
@@ -114,6 +127,7 @@ public class AuthController {
 	@RequestMapping(value="/phoneCheckHandle.do", produces="application/json;charset=utf-8")	// 컨트롤러 여기 타고 들어옴, 폰번호 중복확인
 	@ResponseBody
 	public String phoneCheckHandle(@RequestParam String pcheck) {	// parameter를 pcheck로 받아옴
+		System.out.println("폰 첵크 : ");
 		System.out.println(pcheck);
 		int r = memberDao.phoneCheck(pcheck);
 		String t;
@@ -124,6 +138,10 @@ public class AuthController {
 		}
 		return "{\"rst\": \""+t+"\"}";
 	}
+	
+
+	
+	
 
 	
 }

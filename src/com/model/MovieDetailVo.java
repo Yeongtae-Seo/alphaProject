@@ -7,23 +7,13 @@ public class MovieDetailVo {
 	int num;  //영화 고유 번호
 	String movieName; //영화 이름
 	Date release;  //개봉일 
-	int rating;  //관람등급
-	String genre;  //장르
+	int ratingcode;  //관람등급코드
+	String genrecode;  //장르코드
 	double grade;  //평점
-	String sysnoopsis;  //시놉시스
+	String synopsis;  //시놉시스
 	String cast; //배우
 	String url;  //동영상 url
 	int now; //현재 상영작 유뮤(1이 현재 상영, 2가 상영 예정) 
-	
-	
-	
-	@Override
-	public String toString() {
-		return "movieDetailVo [num=" + num + ", movieName=" + movieName + ", release=" + release + ", rating=" + rating
-				+ ", genre=" + genre + ", grade=" + grade + ", sysnoopsis=" + sysnoopsis + ", cast=" + cast + ", url="
-				+ url + ", now=" + now + "]";
-	}
-	
 	
 	public int getNum() {
 		return num;
@@ -43,17 +33,17 @@ public class MovieDetailVo {
 	public void setRelease(Date release) {
 		this.release = release;
 	}
-	public int getRating() {
-		return rating;
+	public int getRatingcode() {
+		return ratingcode;
 	}
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setRatingcode(int ratingcode) {
+		this.ratingcode = ratingcode;
 	}
-	public String getGenre() {
-		return genre;
+	public String getGenrecode() {
+		return genrecode;
 	}
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setGenrecode(String genrecode) {
+		this.genrecode = genrecode;
 	}
 	public double getGrade() {
 		return grade;
@@ -61,11 +51,11 @@ public class MovieDetailVo {
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
-	public String getSysnoopsis() {
-		return sysnoopsis;
+	public String getSynopsis() {
+		return synopsis;
 	}
-	public void setSysnoopsis(String sysnoopsis) {
-		this.sysnoopsis = sysnoopsis;
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
 	}
 	public String getCast() {
 		return cast;
@@ -86,9 +76,15 @@ public class MovieDetailVo {
 		this.now = now;
 	}
 	
+	@Override
+	public String toString() {
+		return "MovieDetailVo [num=" + num + ", movieName=" + movieName + ", release=" + release + ", ratingcode="
+				+ ratingcode + ", genrecode=" + genrecode + ", grade=" + grade + ", synopsis=" + synopsis + ", cast="
+				+ cast + ", url=" + url + ", now=" + now + "]";
+	}
 	
 	
 	
-	
+
 
 }

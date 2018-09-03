@@ -5,34 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<style>
+em {
+	color: #cc0000;
+}
+</style>
+
 <!-- 영화 메인 -->
 <div style="height: 20px"></div>
 <!-- 상단 여백 -->
 
 <div class="w3-container" align="center">
-	<a href="/movieList.do"><button class="w3-button w3-green">평점순</button></a>
+	<a href="/movie/movieManager.do"><button class="w3-button w3-green">DB
+			관리</button></a>
 </div>
-
-<div class="w3-container" align="center">
-	<!-- 영화 -->
-	<c:forEach var="mo" items="${movie}" varStatus="movie">
-
-		<div class="w3-container w3-center">
-			<img src="img_avatar3.png" alt="Avatar" style="width: 80%">
-			<div class="w3-section">
-				<h5>${mo.moviename}</h5>
-				&nbsp;
-				<c:if test="${mo.grade}"></c:if>
+<!-- 영화 -->
+<div class="w3-row-padding">
+<c:forEach var="mo" items="${movie}" varStatus="mv">
+	<div class="w3-quarter" style="padding:20px;">
+		<div class="w3-card">
+			<img src="${mo.FILEURL}" alt="${mo.FILENAME}"
+				style="width: 100%;">
+			<div class="w3-container w3-center">
+				<b>${mo.MOVIENAME}</b><small><br /> 관람 평점 : </small><em>${mo.GRADE}</em>
+				&nbsp;|&nbsp; <small>${mo.RATING}</small>
+					<div class="w3-bar">
+						<a href="/reserve/page.do"><button class="w3-bar-item w3-button" style="width:50%;">예매하기</button></a>
+						<a href="/movie/movieDetail.do?num=${mo.NUM }"><button class="w3-bar-item w3-button" style="width:50%;">상세보기</button></a>
+					</div>
 			</div>
-			<div class="w3-section">
-				<button class="w3-button">예매하기</button>
-				<button class="w3-button">상세보기</button>
-			</div>
-
-			<c:if test="${(movie%3) eq 0}">
-				<!-- 4개 출력되면 다음 줄로 출력되게 처리 -->
-				<br />
-				<br />
-			</c:if>
-	</c:forEach>
+		</div>
+	</div>
+</c:forEach>
 </div>

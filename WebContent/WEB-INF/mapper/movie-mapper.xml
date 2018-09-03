@@ -6,12 +6,12 @@
 
 	<!-- 1.관리자 - 영화 데이터 입력 -->
 	<insert id="addMovie" parameterType="com.model.MovieDetailVo">
-		insert into movie values(movie_detail_seq.nextval,#{moviename},#{release},#{rating},#{genre},#{grade},#{sysnopsis},#{cast},#{url},#{now})
+		insert into movie values(movie_detail_seq.nextval,#{moviename},#{release},#{ratingcode},#{genrecode},0,#{synopsis},#{cast},#{url},#{now})
 	</insert>
 	
 	<!-- 2.관리자 - 영화 데이터 수정 -->
 	<update id="updateMovie" parameterType="com.model.MovieDetailVo">
-		update movie_detail set moviename=#{moviename},release=#{release},rating=#{rating},genre=#{genre},grade=#{grade},sysnopsis=#{sysnopsis},cast=#{cast},url=#{url},now=#{now} where num=#{num}
+		update movie_detail set moviename=#{moviename},release=#{release},rating=#{ratingcode},genre=#{genrecode},grade=#{grade},synopsis=#{synopsis},cast=#{cast},url=#{url},now=#{now} where num=#{num}
 	</update>
 
 	<!-- 3.관리자 - 영화 데이터 삭제 -->
@@ -20,13 +20,38 @@
 	</delete>
 	
 	<!-- 4.영화 상세 정보 가져오기 -->
-	<select id="getMovie" resultType="com.model.MovieDetailVo">
-		select * from movie
+	<select id="getMovie" resultType="java.util.HashMap">
+		select sub.*,g.genre from(select d.*,r.rating from 
+		(select * from movie_Detail) d left join rating r on d.ratingcode = r.id)sub
+		left join genre g on sub.genrecode=g.id where sub.num=#{num}
 	</select>
 	
-	<!-- 5.평점순 가져오기 수정 필요-->
+	<!-- 5.평점순 가져오기-->
 	<select id="getMovieGrade" resultType="java.util.HashMap">
-		select a.moviename,a.grade,b.fileurl,b.filename from movie_detail a left join 
-		movie_image b on a.num = b.parent where a.now = 1 order by grade desc
+		select * from (select a.num, a.moviename,a.grade,r.rating from (select * from movie_detail) 
+		a left join rating r on a.ratingcode = r.id) u left join movie_image b on b.parent = u.num order by u.grade desc
+	</select>
+	
+	<!-- 6.영화 장르 가져오기 -->
+	<select id="getGenre" resultType="java.util.HashMap">
+		select * from genre
+	</select>
+	
+	<!-- 7.영화 관람등급 가져오기 -->
+	<select id="getRating" resultType="java.util.HashMap">
+		select * from rating 
+	</select>
+	
+	<!-- 8.mongoDB 리뷰 등록 -->
+	<insert id="addReview" parameterType="java.util.HashMap">
+		db.reviewTest.insertOne({"num":"#{num}","grade":"#{grade}","comments":"#{comments}","username":"#{username}","regdate":"#{regdate}"})
+	</insert>
+	
+	<!-- 9.mongoDB 리뷰 가져오기  -->
+	<select id="getReview" resultType="java.util.ArrayList">
+		db.reviewTest.find({"num":{"$eq":"#{num}"}})
 	</select>
 </mapper>
+
+
+

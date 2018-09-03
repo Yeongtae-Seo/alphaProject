@@ -32,9 +32,15 @@ h1, h2, h3, h4, h5, h6 {
 
 	}
 </script>
-<div class="w3-top" >
+<!-- <div class="w3-top" >
 	<div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing: 4px;">
-		<a href="#home" class="w3-bar-item w3-button">M o v i e</a>
+		<a href="#home" class="w3-bar-item w3-button">M o v i e</a> -->
+
+<div class="w3-top">
+	<div class="w3-bar w3-white w3-padding w3-card"
+		style="letter-spacing: 4px;">
+		<a href="/index.do" class="w3-bar-item w3-button">29 CINEMA</a>
+
 		<div class="w3-right w3-hide-small">
 			<c:choose>
 				<c:when test="${!empty sessionScope.auth}">

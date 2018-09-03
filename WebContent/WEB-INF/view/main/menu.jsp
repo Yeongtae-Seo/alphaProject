@@ -6,7 +6,7 @@
 
   <a href="/reserve/page.do?day=0" class="w3-button" >Reservation</a>
   <a href="/movie/movieList.do" class="w3-button" >Movie</a>
-  <a href="#" class="w3-button" >Cinema</a>
+  <a href="/cinema/theater.do" class="w3-button" >Cinema</a>
 
 </div>
 </div>

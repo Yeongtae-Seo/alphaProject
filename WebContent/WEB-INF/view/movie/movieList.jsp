@@ -23,3 +23,8 @@
 	<tiles:insertAttribute name="movieContent" />
 </div>
 
+<div id="review">
+	<tiles:insertAttribute name="review" />
+</div>
+
+

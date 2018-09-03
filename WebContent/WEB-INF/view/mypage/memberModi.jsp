@@ -3,79 +3,45 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="functions" uri="http://java.sun.com/jsp/jstl/functions"%>
-<div style="height: 30px"></div>
+<div style="height: 80px"></div>
 <div align="center">
-	<h1>Account</h1>
+	<h1>Modification</h1>
 	<br />
-	<form class="w3-container" action="/joinHandle.do" method="post" autocomplete="off">
+	<form class="w3-container" action="/modiSucHandle.do" method="post" autocomplete="off">
 		<div align="center" style="width: 500px">
-			<label>- Email</label>
-			<input class="w3-input" type="text" name="email" id="email" placeholder="xxx@email.com" required />
-			<span id="emailCheck"></span>	<!-- id 똑같으면 안 됨 이메일형식맞는지 알림 -->
-			<label>- Password</label><br/>
+			<input type="hidden" value="${person.email }" name="email" />
+			<b>${person.email }</b>(${person.birth })<br/><br/>
+			<label>- modify Password</label><br/>
 			<small>(숫자와 문자 포함 6자리 이상 입력)</small>
-			<input class="w3-input" type="password" name="pass" id="pass" placeholder="비밀번호 입력" required />
+			<input class="w3-input" type="password" name="pass" id="pass" value="${person.pass }" required />
 			<span id="passCheck"></span>
-			<label>-Name</label>
-			<input class="w3-input" type="text" name="name" placeholder="이름 입력" required />
-			<label>-Phone</label>
-			<input class="w3-input" type="text" name="phone" id="phone" placeholder="ex)010-XXXX-XXXX" required />
+			<label>- modify Name</label>
+			<input class="w3-input" type="text" name="name" value="${person.name}" required />
+			<label>- modify Phone</label>
+			<input class="w3-input" type="text" name="phone" id="phone" value="${person.phone }" required />
 			<span id="phoneCheck"></span>
-			<label>- Address</label>
-			<input class="w3-input" type="text" name="address" id="addr" placeholder="주소 입력 클릭" onclick="sample4_execDaumPostcode()" />
-			<label>- Birth</label>
-			<input class="w3-input" type="date" name="birth" required />
-			<input type="hidden" name="hemail" value="email" id="hemail"/>
-			<input type="hidden" name="hpass" value="pass" id="hpass"/>
-			<input type="hidden" name="hphone" value="phone" id="hphone"/>
+			<label>- modify Address</label>
+			<input class="w3-input" type="text" name="address" id="addr" value="${person.address }" onclick="sample4_execDaumPostcode()" />
 		</div>
 		<p>
-			<button class="w3-button w3-black w3-round-large" type="submit" id="bsub" >submit</button>
+			<button class="w3-button w3-black w3-round-large" type="submit">submit</button>
 			<button class="w3-button w3-black w3-round-large" type="reset">reset</button>
 		</p>
+	<p align="left">
+		<a href="/withdraw.do"><button class="w3-button w3-black w3-round-large" type="button">withdrawal</button></a>
+	</p>
+		
 	</form>
 </div>
 <script>
-	var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	var passRule = /^[A-Za-z0-9]{6,12}$/;
 	var phoneRule =/^\d{3}-\d{3,4}-\d{4}$/;
-
-	
-	$("#email").on("change", function() {	// id 가져올때는 #을 붙여
-			$("#emailCheck").html("");	// #emailCheck는 span id
-		if (emailRule.test($(this).val())) {
-			$.ajax({
-				"url" : "/emailCheckHandle.do",
-				"method" : "post",
-				"data" : {
-					"echeck" : $(this).val()
-				}
-			}).done(function(r) {
-				var rCheck = r.rst;
-				if(rCheck == "YYYY") {
-					$("#emailCheck").css("color", "green");
-					$("#emailCheck").html("사용가능한 Email 입니다.<br/><br/>");
-					$("#hemail").val("a");
-					console.log(document.getElementById("hemail").value)
-				}else {
-					$("#emailCheck").css("color", "red");
-					$("#emailCheck").html("이미 사용중인 Email 입니다.<br/><br/>");
-				}
-			}).fail(function(r) {
-				console.log(r);
-			});
-		} else {
-			$("#emailCheck").css("color", "red");
-			$("#emailCheck").html("Email 형식에 맞지 않습니다.<br/><br/>");
-		}
-	});
 	
 	$("#pass").on("change", function() {
 		$("passCheck").html("");
 		if(passRule.test($(this).val())) {
 			$("#passCheck").css("color", "green");
 			$("#passCheck").html("사용가능한 비밀번호 입니다.<br/><br/>")
-			$("#hpass").val("a");
 		}else {
 			$("#passCheck").css("color", "red");
 			$("#passCheck").html("비밀번호 형식에 맞지 않습니다.<br/><br/>")	
@@ -90,14 +56,13 @@
 			"url" : "/phoneCheckHandle.do",
 			"method" : "post",
 			"data" : {
-				"pcheck" : $(this).val()
+				"echeck" : $(this).val()
 			}
 		}).done(function(r) {
 			var rCheck = r.rst;
 			if(rCheck == "YYYY") {
 				$("#phoneCheck").css("color", "green");
 				$("#phoneCheck").html("사용가능한 번호 입니다.<br/><br/>");
-				$("#hphone").val("a");
 			}else {
 				$("#phoneCheck").css("color", "red");
 				$("#phoneCheck").html("이미 사용중인 번호 입니다.<br/><br/>");
@@ -111,7 +76,8 @@
 	}
 });
 	
-
+	
+	
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

@@ -50,4 +50,16 @@ public class QuestionDao {
 		return template.selectList("question.getAnswerParent",no);
 	}
 	
+	public int deleteQuestion(int no ) {
+		return template.delete("question.deleteQuestion", no);
+	}
+	
+	public int deleteQuestionfile(int no) {
+		return template.delete("question.deleteQuestionfile", no);
+	}
+	
+	public int deleteAnswer(int no) {
+		return template.delete("question.deleteAnswer",no);
+	}
+	
 }

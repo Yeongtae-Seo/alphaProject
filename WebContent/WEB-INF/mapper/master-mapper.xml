@@ -7,4 +7,27 @@
 	<update id="updateId" parameterType="java.util.Map">
 		update member set grade=${no} where email=${id}
 	</update>
+	<insert id="addFaq" parameterType="com.model.CustomerVo">
+		insert into customer values(customer_seq.nextval,#{count},#{category},#{title},#{content})
+	</insert>
+	
+	<select id="getQuestionByAll" resultType="com.model.QuestionVo" parameterType="java.lang.Integer">
+		select a.*, b.cnt from (select qr.* from(select rownum r,q.* from(select * from QUESTION order by num desc)q)qr where qr.r between #{num}*10-9 and #{num}*10) a left join (select parent, Count(*) cnt from answer group by parent) b on a.num = b.parent
+	</select>
+	<select id="getQuestionByAllCount" resultType="java.lang.Integer" parameterType="com.model.QuestionVo">
+		select count(*) from(select rownum r,q.* from(select * from QUESTION order by num desc)q)qr
+	</select>
+	
+	<insert id="addAnswer" parameterType="com.model.AnswerVo">
+		insert into answer values(answer_seq.nextval,#{aname},#{acontent},#{parent},sysdate)
+	</insert>
+	
+	<select id="getMovieByAll" resultType="com.model.MovieDetailVo" parameterType="java.lang.Integer">
+		select qr.* from(select rownum r,q.* from(select * from movie_detail order by num desc)q)qr where qr.r between #{num}*10-9 and #{num}*10
+	</select>
+	
+	<select id="getMovieByAllCount" resultType="java.lang.Integer" parameterType="com.model.QuestionVo">
+		select count(*) from(select rownum r,q.* from(select * from movie_detail order by num desc)q)qr
+	</select>
+	
 </mapper>

@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
 <style>
 ul.nav {
@@ -47,10 +46,6 @@ em {
 
 <div style="height: 20px"></div>
 <!-- 상단 여백 -->
-<div class="relative">
-	<a href="/customer/writeFaq.do"><button class="w3-btn w3-pale-red">글
-			작성</button></a>
-</div>
 <h2>고객센터</h2>
 <div>
 	<ul class="nav">
@@ -59,7 +54,7 @@ em {
 
 		<c:forEach var="cc" items="${cateCount}" varStatus="count">
 			<!-- 카테고리별 버튼 -->
-			<li class="link"><a href="category.do?category=${cc.CATEGORY }">${ cc.CATEGORY }<em>(${ cc.C })</em></a></li>
+			<li class="link"><a href="category.do?category=${cc.CATEGORY}">${ cc.CATEGORY }<em>(${ cc.C })</em></a></li>
 		</c:forEach>
 	</ul>
 </div>

@@ -1,8 +1,10 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,7 +61,7 @@ public class QuestionController {
 		pages.put("maxpage", maxpage);
 		pages.put("num", num);
 		
-		System.out.println(max+"/"+page+"/"+minpage+"/"+maxpage+"/"+num);
+		//System.out.println(max+"/"+page+"/"+minpage+"/"+maxpage+"/"+num);
 		
 		mav.setViewName("el.question");
 		mav.addObject("qlist", qlist);
@@ -107,4 +109,41 @@ public class QuestionController {
 		
 		return mav;
 	}
-}
+	
+	@RequestMapping("/delete.do")
+	public ModelAndView deleteHandle(@RequestParam(name="no")int no) {
+		ModelAndView mav = new ModelAndView();
+		int f = questionDao.deleteQuestionfile(no);
+		int a = questionDao.deleteAnswer(no);		
+		int r = questionDao.deleteQuestion(no);
+		if(r == 1) {
+			mav.setViewName("redirect:/question/send.do");
+		}else {
+			mav.setViewName("el.question2");
+			mav.addObject("contents", "/WEB-INF/view/quest/error.jsp");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/deleted.do")
+	public ModelAndView deletedHandle(@RequestParam Map map) {
+		ModelAndView mav = new ModelAndView();
+		List<String> list = new ArrayList<>(map.keySet());
+		for(int i =0;i < list.size();i++){
+			//System.out.println(list.get(i));
+			int no = Integer.parseInt(list.get(i));
+			questionDao.deleteQuestionfile(no);
+			questionDao.deleteAnswer(no);
+			questionDao.deleteQuestion(no);
+		}
+		mav.setViewName("redirect:/question/send.do");
+		/*if(r == 1) {
+			mav.setViewName("redirect:/question/send.do");
+		}else {
+			mav.setViewName("el.question2");
+			mav.addObject("contents", "/WEB-INF/view/quest/error.jsp");
+		}*/
+		return mav;
+	}
+	
+} 

@@ -8,6 +8,27 @@
 			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
 			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
 			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
-			<put-attribute name="movieContent" value="/WEB-INF/view/movie/movieContent.jsp"/>			
+			<put-attribute name="movieContent" value="/WEB-INF/view/movie/movieContent.jsp"/>
+			<put-attribute name="review" value="/WEB-INF/view/movie/o.jsp"/>			
 		</definition>	
+		
+		<!-- 영화 관리자 페이지 -->
+		<definition name="manager" template="/WEB-INF/view/movie/movieList.jsp">
+			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
+			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
+			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
+			<put-attribute name="movieContent" value="/WEB-INF/view/movie/movieManager.jsp"/>			
+			<put-attribute name="review" value="/WEB-INF/view/movie/o.jsp"/>			
+		</definition>	
+		
+		<!-- 영화 상세 페이지 -->
+		<definition name="detail" template="/WEB-INF/view/movie/movieList.jsp">
+			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
+			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
+			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
+			<put-attribute name="movieContent" value="/WEB-INF/view/movie/movieDetail.jsp"/>			
+			<put-attribute name="review" value="/WEB-INF/view/movie/movieReview.jsp"/>			
+		</definition>	
+		
+		
 </tiles-definitions>

@@ -4,9 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!-- <div class="w3-cell-row">
-	<div class="w3-container w3-col s2"></div>
-	<div class="w3-container w3-col s8"> -->
 <br />
 <br />
 <div align="center">
@@ -22,21 +19,6 @@
 			<td colspan="3" style="text-align: right;"><a
 				href="<c:url value="${attach.furl }"/>" download>${attach.fname }</a></td>
 
-			<%-- <c:choose>
-						<c:when test="${attach.fsize > 1024*1024 }">
-								(<fmt:formatNumber value="${attach.fsize/1024/1024 }"
-								pattern="#,###.##" /> MB)
-							</c:when>
-						<c:when test="${attach.fsize > 1024 }">
-								(<fmt:formatNumber value="${attach.fsize/1024 }"
-								pattern="#,###.##" /> KB)
-							</c:when>
-						<c:otherwise>
-								(<fmt:formatNumber value="${attach.fsize }" pattern="#,###.##" /> bytes)
-							</c:otherwise>
-					</c:choose> --%>
-
-			</th>
 		</tr>
 		<tr>
 			<td colspan="3" style="height: 500px;"><c:out
@@ -56,11 +38,20 @@
 			</c:forEach>
 		</c:if>
 	</table>
-	<br /> <br /> <a href="/question/send.do"><button type="button"
-			class="w3-button w3-black w3-round-large">목록</button></a>
+	<br /> <br />
+	<c:choose>
+		<c:when test="${auth.grade eq 0 }">
+			<a href="/master/answer.do?num=${qvo.num }"><button type="button"
+					class="w3-button w3-black w3-round-large">답변하기</button></a>
+			<a href="/master/showQuestion.do"><button type="button"
+					class="w3-button w3-black w3-round-large">목록</button></a>
+		</c:when>
+		<c:otherwise>
+			<a href="/question/send.do"><button type="button"
+					class="w3-button w3-black w3-round-large">목록</button></a>
+			<a href="/question/delete.do?no=${qvo.num }"><button
+					type="button" class="w3-button w3-black w3-round-large">삭제</button></a>
+		</c:otherwise>
+	</c:choose>
 </div>
-
-<!-- </div>
-	<div class="w3-container w3-col s2"></div>
-</div> -->
 

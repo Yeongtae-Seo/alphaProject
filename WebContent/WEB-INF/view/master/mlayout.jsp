@@ -32,9 +32,10 @@
 		<div class="w3-container w3-quarter w3-bar-block">
 			<h3 class="w3-bar-item">Master Menu</h3>
 			<a href="/master/showmember.do" class="w3-bar-item w3-button">member</a> <a href="/master/info.do?num=1&page=1&viewPage=1"
-				class="w3-bar-item w3-button">info</a> <a href="#"
-				class="w3-bar-item w3-button">customer</a> <a href="#"
-				class="w3-bar-item w3-button">question</a>
+				class="w3-bar-item w3-button">info</a> <a href="/master/showCustomer.do"
+				class="w3-bar-item w3-button">customer</a> <a href="/master/showQuestion.do"
+				class="w3-bar-item w3-button">question</a> <a href="/master/showMovie.do"
+				class="w3-bar-item w3-button">movie</a>
 		</div>
 		<!-- Page Content -->
 		<div class="w3-threequarter w3-container">

@@ -23,10 +23,11 @@
 		</definition>
 		
 		<!-- 작성 페이지 -->
-		<definition name="writeFaq" template="/WEB-INF/view/customer/writeFaq.jsp">
+		<definition name="writeFaq" template="/WEB-INF/view/customer/center.jsp">
 			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
 			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
 			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
+			<put-attribute name="faq" value="/WEB-INF/view/customer/writeFaq.jsp"/>
 		</definition>
 	
 		

@@ -27,4 +27,15 @@
 	<select id="getAnswerParent" resultType="com.model.AnswerVo" parameterType="java.lang.Integer">
 		select * from answer where parent=#{no}
 	</select>
+	<delete id="deleteQuestion" parameterType="java.lang.Integer">
+		delete from question where num=#{no}
+	</delete>
+	<delete id="deleteQuestionfile" parameterType="java.lang.Integer">
+		delete from question_file where parent=#{no}
+	</delete>
+	<delete id="deleteAnswer" parameterType="java.lang.Integer">
+		delete from answer where parent=#{no}
+	</delete>
+	
+	
 </mapper>

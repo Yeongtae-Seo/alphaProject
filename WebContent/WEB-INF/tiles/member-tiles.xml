@@ -10,22 +10,6 @@
 			<put-attribute name="contents" value="/WEB-INF/view/member/loginPage.jsp"/>
 		</definition>	
 		
-		<!-- 로그인 성공 페이지 -->
-		<definition name="logsuc" template="/WEB-INF/view/layout.jsp">
-			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
-			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
-			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
-			<put-attribute name="contents" value="/WEB-INF/view/member/loginPage.jsp"/>
-		</definition>
-		
-		<!-- 로그인 에러 페이지 -->
-		<definition name="logerr" template="/WEB-INF/view/layout.jsp">
-			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
-			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
-			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
-			<put-attribute name="contents" value="/WEB-INF/view/member/logerr.jsp"/>
-		</definition>
-		
 		<!-- 회원가입 페이지 -->
 		<definition name="joinPage" template="/WEB-INF/view/layout.jsp">
 			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
@@ -35,22 +19,19 @@
 		</definition>
 		
 		<!-- 회원가입 성공 페이지 -->
-		<definition name="joinsuc" template="/WEB-INF/view/layout.jsp">
+		<definition name="joinSucc" template="/WEB-INF/view/layout.jsp">
 			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
 			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
 			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
-			<put-attribute name="contents" value="/WEB-INF/view/member/joinPage.jsp"/>
+			<put-attribute name="contents" value="/WEB-INF/view/member/joinSuc.jsp" />
 		</definition>
 		
-		<!-- 마이 페이지 -->
-		<definition name="myPage" template="/WEB-INF/view/layout.jsp">
+		<!-- 회원가입 에러 페이지 -->
+		<definition name="joinErr" template="/WEB-INF/view/layout.jsp">
 			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
 			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
 			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
-			<put-attribute name="contents" value="/WEB-INF/view/member/myPage.jsp"/>
+			<put-attribute name="contents" value="/WEB-INF/view/member/joinErr.jsp" />
 		</definition>
-		
-		
-		
 		
 	</tiles-definitions>
