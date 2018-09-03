@@ -18,5 +18,13 @@
 			<put-attribute name="contents" value="/WEB-INF/view/reserve/selectSeat.jsp"/>
 		</definition>	
 		
+		<!-- 예약 성공 페이지 -->
+		<definition name="reserveSuccess" template="/WEB-INF/view/layout.jsp">
+			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
+			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
+			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
+			<put-attribute name="contents" value="/WEB-INF/view/reserve/reserveSuccess.jsp"/>
+		</definition>
+		
 		
 </tiles-definitions>

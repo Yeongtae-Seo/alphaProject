@@ -50,12 +50,72 @@
 			from 
 				reserve_time 
 			where 
-				timecode = 'A0001'
+				timecode = #{reserveCode}
 			) r 
 		left join 
 			movie_detail m 
 		on 
-			r.moviecode = m.num 
+			r.moviecode = m.num
+<!-- 			select 
+    s.*, d.selectseat
+from
+(select 
+			r.*, m.moviename 
+		from 
+			(
+			select 
+				* 
+			from 
+				reserve_time 
+			where 
+				timecode = #{reserveCode}
+			) r 
+		left join 
+			movie_detail m 
+		on 
+			r.moviecode = m.num) s
+left join
+    seat d
+    on d.timecode = s.timecode -->
+	</select>
+	
+	<select id="getSeatCode" resultType="java.lang.Integer">
+		select 
+			seat_seq.nextval
+		from
+			dual
+	</select>
+	
+	<insert id="insertSeat" parameterType="com.model.ReserveVo">
+		insert into seat values(#{seatCode}, #{screenCode}, #{selectSeat}, #{timeCode})
+	</insert>
+	
+	<insert id="insertReserve" parameterType="com.model.ReserveVo">
+		insert into reserve values(reserve_seq.nextval, #{email}, #{timeCode}, #{movieCode}, #{seatCode})
+	</insert>
+	
+	<select id="getSeat" resultType="java.lang.String" parameterType="java.lang.String">
+		select 
+    d.selectseat
+from
+(select 
+			r.*, m.moviename 
+		from 
+			(
+			select 
+				* 
+			from 
+				reserve_time 
+			where 
+				timecode = #{reserveCode}
+			) r 
+		left join 
+			movie_detail m 
+		on 
+			r.moviecode = m.num) s
+left join
+    seat d
+    on d.timecode = s.timecode
 	</select>
 </mapper>
 

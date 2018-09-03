@@ -12,6 +12,7 @@ public class ReserveTimeVo {
 	int screenCode;
 	int movieCode;
 	String movieName;
+	String selectSeat;
 	
 	public String getTimeCode() {
 		return timeCode;
@@ -67,13 +68,19 @@ public class ReserveTimeVo {
 	public void setMovieName(String movieName) {
 		this.movieName = movieName;
 	}
-	
+	public String getSelectSeat() {
+		return selectSeat;
+	}
+	public void setSelectSeat(String selectSeat) {
+		this.selectSeat = selectSeat;
+	}
 	@Override
 	public String toString() {
 		return "ReserveTimeVo [timeCode=" + timeCode + ", startTime=" + startTime + ", endTime=" + endTime
 				+ ", movieDate=" + movieDate + ", movieCount=" + movieCount + ", screenCode=" + screenCode
-				+ ", movieCode=" + movieCode + ", movieName=" + movieName + "]";
+				+ ", movieCode=" + movieCode + ", movieName=" + movieName + ", selectSeat=" + selectSeat + "]";
 	}
+	
 
 	
 }

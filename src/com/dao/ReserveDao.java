@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.model.ReserveTimeVo;
+import com.model.ReserveVo;
 
 @Repository
 public class ReserveDao {
@@ -25,5 +26,51 @@ public class ReserveDao {
 		
 		return template.selectOne("reserve.getReserve", reserveCode);
 	}
+	
+	public int getSeatCode() {
+		return template.selectOne("reserve.getSeatCode");
+	}
+
+	public int insertSeat(ReserveVo reserveVo) {
+		
+		return template.insert("reserve.insertSeat", reserveVo);
+	}
+
+	public int insertReserve(ReserveVo reserveVo) {
+		
+		return template.insert("reserve.insertReserve", reserveVo);
+	}
+	
+	public List<String> getSeat(String reserveCode){
+		return template.selectList("reserve.getSeat", reserveCode);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
