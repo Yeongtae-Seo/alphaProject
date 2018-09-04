@@ -91,12 +91,12 @@ em#re {
 <div class="w3-row">
 	<div class="w3-col w3-container" style="width: 26%"></div>
 	<div class="w3-Container w3-col" style="width: 17%">
-		<input type="image" src="http://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/201808/13109_103_1.jpg"/>
+		<image style="max-width:100%;" src="http://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/201808/13109_103_1.jpg" alt="포스터"/>
 		<br />
 	</div>
-	<div class="w3-Container w3-col" style="width: 31%">
+	<div class="w3-Container w3-col" style="width: 31%;">
 		<h3 class="w3-serif w3-border-bottom">${movie[0].MOVIENAME}</h3>
-		<b>관람 평점</b> : <em>${movie[0].GRADE }</em><br/>
+		<b>관람 평점</b> : <em>${g[0].grade/g[0].cnt}</em><br/>
 		<b>관람 등급</b> : ${movie[0].RATING}<br /> <b>개봉일</b> :
 		<fmt:formatDate value="${movie[0].RELEASE }" pattern="yyyy-MM-dd" />
 		<br /> <b>장르</b> : ${movie[0].GENRE }<br /> <b>출연진</b> :

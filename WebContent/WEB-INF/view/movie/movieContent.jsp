@@ -13,8 +13,6 @@ em {
 <!-- 상단 여백 -->
 
 <div class="w3-container" align="center">
-	<a href="/movie/movieManager.do"><button class="w3-button w3-green">DB
-			관리</button></a>
 </div>
 <!-- 영화 -->
 <div class="w3-row-padding">

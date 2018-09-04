@@ -41,16 +41,7 @@
 	<select id="getRating" resultType="java.util.HashMap">
 		select * from rating 
 	</select>
-	
-	<!-- 8.mongoDB 리뷰 등록 -->
-	<insert id="addReview" parameterType="java.util.HashMap">
-		db.reviewTest.insertOne({"num":"#{num}","grade":"#{grade}","comments":"#{comments}","username":"#{username}","regdate":"#{regdate}"})
-	</insert>
-	
-	<!-- 9.mongoDB 리뷰 가져오기  -->
-	<select id="getReview" resultType="java.util.ArrayList">
-		db.reviewTest.find({"num":{"$eq":"#{num}"}})
-	</select>
+
 </mapper>
 
 
