@@ -41,37 +41,7 @@
 	<select id="getRating" resultType="java.util.HashMap">
 		select * from rating 
 	</select>
-	
-	<!-- 8.mongoDB 리뷰 등록 -->
-	<insert id="addReview" parameterType="java.util.HashMap">
-		db.reviewTest.insertOne({"num":"#{num}","email":"#{email}","grade":"#{grade}","comments":"#{comments}","username":"#{username}","regdate":"#{regdate}"})
-	</insert>
-	
-	<!-- 9.mongoDB 리뷰 가져오기  -->
-	<select id="getReview" resultType="java.util.ArrayList">
-		db.reviewTest.find({"num":{"$eq":"#{num}"}})
-	</select>
-	
-	<!-- 10.영화 평점 처리 -->
-	<update id="setGradeInc" parameterType="java.util.HashMap">
-		db.gradeInc.updateOne({"num":"#{num}"},{"$inc":{"grade":"#{grade}","cnt":"#{cnt}"}});
-	</update>
-	
-	<!-- 11.평점 처리용 DB에 영화번호가 존재하는지 확인 -->
-	<select id="findGradeInc" resultType="java.util.ArrayList">
-		db.gradeInc.find({"num":"#{num}"});
-	</select>
-	
-	<!-- 12.평점 처리용 DB에 데이터 삽입 -->
-	<insert id="addGradeInc" parameterType="java.util.HashMap">
-		db.gradeInc.insertOne({"num":"#{num}","grade":"#{grade}","cnt":"#{cnt}"})
-	</insert>
-	
-	<!-- 13.리뷰 작성 기록이 있는지 확인 -->
-	<select id="findReview" parameterType="java.util.HashMap">
-		db.reviewTest.find({"email":"#{email}", "num":"#{num}"});
-	</select>
-	
+
 </mapper>
 
 

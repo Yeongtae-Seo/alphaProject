@@ -12,7 +12,6 @@
 	<div class="w3-row">
 		<div class="w3-col w3-container" style="width: 26%"></div>
 		<div class="w3-bar w3-col w3-container" style="width: 48%">
-
 			<select class="w3-select w3-border w3-bar-item w3-light-grey"
 				style="width: 18%; height: 10%;" id="usergrade" required>
 				<option value="" disabled selected>평점 선택</option>
@@ -31,18 +30,14 @@
 				<c:otherwise>
 					<c:choose>
 						<c:when test="${fr[0] eq null}">
-						<form name = "myform">
-							<textarea id="comments" class="w3-bar-item w3-border"
-								style="width: 64%; height: 10%; resize: none;" name = "limitedtextarea"
-								onKeyDown = "limitText (this.form.limitedtextarea, this.form.countdown, 100);"
-								onKeyUp = "limitText (this.form.limitedtextarea, this.form.countdown, 100);"></textarea>
-								<font size = "1"> (최대 문자 수 : 100)
-								 <input type = "text"name = "countdown"size = "3"value = "100"> 문자가 남아 있습니다. </font>
-						</form>
+						<div class="w3-bar-item w3-border" style="width: 64%; height: 10%;">
+							<textarea  style="width:90%;height:90%;resize:none;" name ="limitedtextarea" onKeyDown = "limitText(this);" onKeyUp = "limitText(this);"></textarea>
+							<input type = "text" id="countdown" size="1" value="150" style="font-size: xx-small; text-align: right;" readonly>
+						</div>
 						</c:when>
 						<c:otherwise>
 							<textarea id="comments" class="w3-bar-item w3-border"
-								style="width: 64%; height: 10%; resize: none;" placeholder="이미 리뷰를 작성하셨습니다"></textarea>
+								style="width: 64%; height: 10%; resize: none;" placeholder="이미 리뷰를 작성하셨습니다" readonly></textarea>
 						</c:otherwise>
 					</c:choose>
 				</c:otherwise>
@@ -68,7 +63,7 @@
 						<!-- 평점, 리뷰내용, 작성 날짜 -->
 						평점 : (
 						<c:forEach begin="1" end="${ar.grade }" varStatus="vs">			
-									★
+									⭐
 						</c:forEach>
 						) <em id="re">${ar.grade}</em> | <small>${ar.regdate}</small> <br />
 						<p>${ar.comments }</p>
@@ -100,9 +95,9 @@
 	var regdate = rd.getFullYear() + "-" + (rd.getMonth() + 1) + "-"
 			+ rd.getDate();
 	var num = ${num};
-	var email = ${sessionScope.auth.email};
-	email = (String)email;
+	var email = "${sessionScope.auth.email}";
 	
+	console.log(typeof num);
 	$("#submit").on("click", function() {
 		if ($("#usergrade").val() == null || $("#usergrade").val() == "" || $("textarea").val()== "" || $("textarea").val()== null) {
 			window.alert("평점과 리뷰를 작성해 주세요");
@@ -123,17 +118,16 @@
 			"async" : true
 		//비동기
 		}).done(function(r) {
-			$("#comments").val("");
+			//여기서 댓글 ㄷ시 받아서 바로 보이게 처리
 		});
 	}
 	});
 	
 	//=================================================글자 수 제한
-	 function limitText(limitField, limitCount, limitNum) {
-		 if (limitField.value.length> limitNum) {
-			 limitField.value = limitField.value.substring (0, limitNum);
-		 } else {
-			 limitCount.value = limitNum - limitField.value.length;
-		 }
- 		};
+	 function limitText(target) {
+		 if ($(target).val().length> 150) {
+			 $(target).val( $(target).val().substring(0,150) );
+		 } 
+		 $("#countdown").val(150-$(target).val().length );
+	};
 </script>
