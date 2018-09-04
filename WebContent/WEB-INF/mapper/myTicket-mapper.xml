@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myTicket">
+
+<select id="ticketList" resultType="com.model.MyTicketVo" parameterType="java.lang.String">
+select pp.moviename, pp.moviedate, pp.name, pp.selectseat, to_char(pp.starttime, 'HH24:MI') as startTime from (select p.*, md.moviename from (select a.*, b.name from (select rs.*, rt.starttime, rt.endtime, rt.moviedate, rt.moviecount  from (
+(select r.*, s.SCREENCODE, s.SELECTSEAT from reserve r join seat s on (r.SEATCODE = s.SEATCODE) where email=#{email} order by r.RESERVECODE) rs
+join reserve_time rt on rs.timecode = rt.timecode)) a left join screen b on a.screencode = b.screencode) p left join movie_detail md on p.moviecode = md.num order by reservecode desc) pp
+</select>
+
+</mapper>
