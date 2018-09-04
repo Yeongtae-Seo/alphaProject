@@ -7,6 +7,7 @@
 <!-- 영화 평점 및 리뷰 입력 -->
 <div class="w3-center">
 	<h4>평점 및 영화 리뷰</h4>
+<div><a href="/movie/movieDetail.do?num=${num}"><image src="/img/re.png" style="width:50px;height:50px; left:200px;"/></a></div>
 </div>
 <div>
 	<div class="w3-row">
@@ -31,7 +32,7 @@
 					<c:choose>
 						<c:when test="${fr[0] eq null}">
 						<div class="w3-bar-item w3-border" style="width: 64%; height: 10%;">
-							<textarea  style="width:90%;height:90%;resize:none;" name ="limitedtextarea" onKeyDown = "limitText(this);" onKeyUp = "limitText(this);"></textarea>
+							<textarea id="comment" style="width:90%;height:90%;resize:none;" name ="limitedtextarea" onKeyDown = "limitText(this);" onKeyUp = "limitText(this);"></textarea>
 							<input type = "text" id="countdown" size="1" value="150" style="font-size: xx-small; text-align: right;" readonly>
 						</div>
 						</c:when>
@@ -96,6 +97,7 @@
 			+ rd.getDate();
 	var num = ${num};
 	var email = "${sessionScope.auth.email}";
+
 	
 	console.log(typeof num);
 	$("#submit").on("click", function() {
@@ -119,8 +121,8 @@
 			"async" : true
 		//비동기
 		}).done(function(data) {  
-			console.log(data);
-			$("#comments").val("");	
+			$("#comment").val("");	
+			$("#comment").attr("readonly", true);
 		});
 	}
 	});
@@ -132,4 +134,5 @@
 		 } 
 		 $("#countdown").val(150-$(target).val().length );
 	};
+	
 </script>

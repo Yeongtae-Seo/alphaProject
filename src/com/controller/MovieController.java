@@ -64,7 +64,7 @@ public class MovieController {
 			MemberVo vo = (MemberVo) session.getAttribute("auth");
 			String email = vo.getEmail();
 			mav.addObject("fr", moviedao.findReview(email,num));
-			System.out.println(moviedao.findReview(email,num));
+			//System.out.println(moviedao.findReview(email,num));
 		}
 		mav.setViewName("detail");		
 		return mav;
@@ -103,11 +103,9 @@ public class MovieController {
 			String email = vo.getEmail();
 			mav.addObject("fr", moviedao.findReview(email,rvo.getNum()));
 		}
-	
+		mav.setViewName("detail");
 		mav.addObject("allReview",moviedao.getReview(rvo.getNum()));  //전체 댓글 리스트
-		mav.addObject("rvo",rvo);  //댓글 갱신용
-		return mav;
-		
+		return mav;	
 	}
 
 	
@@ -116,5 +114,4 @@ public class MovieController {
 	public String testHandle() {
 		return "/videoTest";	
 	}
-	
 }
