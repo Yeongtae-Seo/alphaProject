@@ -48,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
 						<a id="navA" href="/master/showmember.do"
 							class="w3-bar-item w3-button">MASTER</a>
 					</c:if>
-					<a id="navB" href="/myPage.do" class="w3-bar-item w3-button">${sessionScope.auth.email}</a>
+					<a id="navB" href="/myPape/myPage.do" class="w3-bar-item w3-button">${sessionScope.auth.email}</a>
 					<a id="navA" href="/logout.do" class="w3-bar-item w3-button">Logout</a>
 					<a id="navA" href="/info.do?num=1&page=1&viewPage=1"
 						class="w3-bar-item w3-button">InFo</a>

@@ -7,6 +7,12 @@
 
 <div align="Center">
 	<h2>좌 석 선 택</h2>
+	<div style="width:25%" align="left">
+		인원 수 : <select name="nop" id="nop">
+		    <option value="1" selected="selected">1</option>
+		    <option value="2">2</option>
+		</select>
+	</div>
 	<br/>
 	<div style="background-color:#EAEAEA; width:25%; height:5%;">
 		<p style="display:table-cell; vertical-align: middel;">
@@ -158,7 +164,7 @@
 				<td align="right">
 					선택한 좌석 : 
 				</td>
-				<td align="center" style="width:10%;">
+				<td align="center" style="width:20%;">
 					<span id = "yourSeat"></span>
 				</td>
 			</tr>
@@ -169,41 +175,88 @@
 			<h4><span id="price"> </span>&#8361;</h4>
 		</div>
 	</div>
+	<input type="hidden" name="selectSeat" id="selectSeat"/>
 	</form>
 </div>
 <script>
+	var list = [];
 	$('.aa').click(function(){
-		var b ;
-		if(document.getElementById(this.id).checked){
-			for(var i=1; i<11; i++){
-				for(var j=1 ;j<21; j++){
-					b = i + "-" + j;
-					if(document.getElementById(b).checked){
-	
-					}else{
-						console.log("bsa");
-						document.getElementById(b).disabled = true;
-						document.getElementById("yourSeat").innerHTML = this.value;
-						document.getElementById("price").innerHTML = "5000" ;
+		if(document.getElementById("nop").value == "1"){
+			var b ;
+			if(document.getElementById(this.id).checked){
+				for(var i=1; i<11; i++){
+					for(var j=1 ;j<21; j++){
+						b = i + "-" + j;
+						if(document.getElementById(b).checked){
+		
+						}else{
+							console.log("bsa");
+							document.getElementById(b).disabled = true;
+							document.getElementById("yourSeat").innerHTML = this.value;
+							document.getElementById("price").innerHTML = "5000" ;
+							document.getElementById("selectSeat").value = this.value + ",";
+						}
+					}
+				}
+			}else{
+				for(var i=1; i<11; i++){
+					for(var j=1 ;j<21; j++){
+						b = i + "-" + j;
+						if(document.getElementById(b).checked){
+		
+						}else{
+							console.log("bsa");
+							document.getElementById(b).disabled = false;
+							document.getElementById("yourSeat").innerHTML = "";
+							document.getElementById("price").innerHTML = "";
+							document.getElementById("selectSeat").value = "";
+						}
 					}
 				}
 			}
+		console.log(b);
 		}else{
-			for(var i=1; i<11; i++){
-				for(var j=1 ;j<21; j++){
-					b = i + "-" + j;
-					if(document.getElementById(b).checked){
-	
-					}else{
-						console.log("bsa");
-						document.getElementById(b).disabled = false;
-						document.getElementById("yourSeat").innerHTML = "";
-						document.getElementById("price").innerHTML = "";
+			if(document.getElementById(this.id).checked){
+				list.push(this.id);
+			}else{
+				list.splice(list.indexOf(this),1);
+			}
+			console.log(list.length);
+			console.log(list);
+			if(list.length == 2){
+					for(var i=1; i<11; i++){
+						for(var j=1 ;j<21; j++){
+							b = i + "-" + j;
+							if(document.getElementById(b).checked){
+			
+							}else{
+								console.log("bsa");
+								document.getElementById(b).disabled = true;
+								document.getElementById("yourSeat").innerHTML = 
+									document.getElementById(list[0]).value + "," + document.getElementById(list[1]).value;
+								document.getElementById("price").innerHTML = "10000" ;
+								document.getElementById("selectSeat").value = document.getElementById(list[0]).value + "," + document.getElementById(list[1]).value + ",";
+
+							}
+						}
+					}
+			}else{
+				for(var i=1; i<11; i++){
+					for(var j=1 ;j<21; j++){
+						b = i + "-" + j;
+						if(document.getElementById(b).checked){
+		
+						}else{
+							console.log("bsa");
+							document.getElementById(b).disabled = false;
+							document.getElementById("yourSeat").innerHTML = "";
+							document.getElementById("price").innerHTML = "";
+							document.getElementById("selectSeat").value = "";
+						}
 					}
 				}
 			}
 		}
-		console.log(b);
 	});
 
 	var a = document.getElementsByName("io");

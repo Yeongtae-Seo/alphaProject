@@ -1,11 +1,10 @@
 package com.controller;
 
 
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dao.ReserveDao;
 import com.model.ReserveTimeVo;
 import com.model.ReserveVo;
+import com.service.Converter;
 
 @Controller
 @RequestMapping("/reserve")
@@ -48,10 +48,18 @@ public class ReserveController {
 			map.put("toDay", selectDay);
 		}
 		
+		Converter con = new Converter();
+		
 //		List<ReserveTimeVo> timeList= reserveDao.getMovieTime(test1.format(date2));
 		List<ReserveTimeVo> timeList= reserveDao.getMovieTime(map);
 		mav.addObject("selectDay", Integer.parseInt(test2.format(date2)));
 		mav.addObject("timeList", timeList);
+		if(day != 0) {
+			mav.addObject("day", day);
+		}else {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			mav.addObject("day", sdf.format(new Date()));
+		}
 		mav.setViewName("reserveMainPage");
 		return mav;
 	}
@@ -70,7 +78,7 @@ public class ReserveController {
 	@RequestMapping("/seatSelect.do")
 	public ModelAndView seatSelect(@RequestParam Map map) {
 		ModelAndView mav = new ModelAndView();
-		ReserveTimeVo reserveTimeVo = reserveDao.getReserveTime((String) map.get("timeCode"));
+		/*ReserveTimeVo reserveTimeVo = reserveDao.getReserveTime((String) map.get("timeCode"));
 		ReserveVo reserveVo = new ReserveVo();
 		reserveVo.setEmail((String)map.get("email"));
 		reserveVo.setMovieCode(reserveTimeVo.getMovieCode());
@@ -86,7 +94,32 @@ public class ReserveController {
 			mav.setViewName("reserveSuccess");
 		}else {
 			mav.setViewName("reserveFail");
+		}*/
+		String c = (String) map.get("selectSeat");
+		String[] a = c.split(",");
+		int insertSeat = 0;
+		int insertReserve = 0;
+		for(int i=0; i<a.length ; i++) {
+			ReserveTimeVo reserveTimeVo = reserveDao.getReserveTime((String) map.get("timeCode"));
+			ReserveVo reserveVo = new ReserveVo();
+			reserveVo.setEmail((String)map.get("email"));
+			reserveVo.setMovieCode(reserveTimeVo.getMovieCode());
+			reserveVo.setScreenCode(reserveTimeVo.getScreenCode());
+			reserveVo.setSelectSeat(a[i]);
+			int seatCode = reserveDao.getSeatCode();
+			reserveVo.setSeatCode(seatCode);
+			reserveVo.setTimeCode(reserveTimeVo.getTimeCode());
+			insertSeat = reserveDao.insertSeat(reserveVo);
+			insertReserve = reserveDao.insertReserve(reserveVo);
 		}
+		
+		if((insertSeat == 1) && (insertReserve == 1)) {
+			mav.setViewName("reserveSuccess");
+		}else {
+			mav.setViewName("reserveFail");
+		}
+		
+		System.out.println(map.get("selectSeat"));
 		return mav;
 		
 	}
