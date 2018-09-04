@@ -3,10 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 
 <style>
 em {
@@ -61,7 +58,7 @@ em#re {
 				src="/img/x.jpg" style="height: 25px; width: 25px;" /></a>
 		</div>
 		<br />
-		<iframe style="width: 100%; height: 80%;"
+		<iframe style="width: 100%; height: 80%;" id="trailer"
 			src="https://www.youtube.com/embed/52WsO33F4qg"
 			frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>트레일러</iframe>
 	</div>
@@ -69,16 +66,20 @@ em#re {
 
 	<!-- =============================================================================== -->
 	<div class="box w3-row">
-		<div class="w3-col w3-container" style="width: 21%"></div>
-		<div class="w3-col w3-container" style="width: 53%">
-			<table border="0" cellpadding="0" cellspacing="0">
+		<div class="w3-col w3-container" style="width: 26%"></div>
+		<div class="w3-col w3-container" style="width: 48%">
+		<iframe style="width: 90%; height: 70%;" id="trailer"
+			src="https://www.youtube.com/embed/52WsO33F4qg"
+			frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>트레일러</iframe>
+			<!-- <img onclick="pushLayer()" src="/img/play.png" /> -->
+			<!--  <table border="0" cellpadding="0" cellspacing="0">
 				<tr>
-					<td id="tdtd" 
-						background="http://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/201808/13081_105_1.jpg">
-						<img onclick="pushLayer()" src="/img/play.png" />
+					<td id="tdtd">
+
 					</td>
 				</tr>
-			</table>
+			</table> 
+			-->
 		</div>
 		<div class="w3-col w3-container" style="width: 26%"></div>
 	</div>
@@ -129,8 +130,8 @@ em#re {
 <br />
 <br />
 
-<!-- 비디오(영화 트레일러) -->
-<script language="javascript">
+<!-- 비디오(영화 트레일러)
+<script >
 	function pushLayer() {
 		var $width = parseInt($("#lay_pop").css("width"));
 		var $height = parseInt($("#lay_pop").css("height"));
@@ -145,10 +146,11 @@ em#re {
 		$("#all_body").css("display", "block");
 		$("#all_body").css("width", $(window).width());
 		$("#all_body").css("height", height);
+		document.getElementById("trailer").contentDocument.location.reload(true);
 
 	}
 	function layerClose(lay1, lay2) {
 		$("#" + lay1).css("display", "none");
 		$("#" + lay2).css("display", "none");
 	}
-</script>
+</script> -->

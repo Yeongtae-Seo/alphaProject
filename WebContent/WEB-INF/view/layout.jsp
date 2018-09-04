@@ -23,17 +23,6 @@ body {
 	font-family: "Times New Roman", Georgia, Serif;
 }
 
-
-<html>
-<head>
-<title>TILES-template</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-<body>
-<div>
-
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Playfair Display";
 	letter-spacing: 5px;
@@ -43,8 +32,11 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: none;
 }
 </style>
+<title>TILES-template</title>
 </head>
 <body>
+<div>
+
 	<div id="nav">
 		<tiles:insertAttribute name="nav" />
 	</div>

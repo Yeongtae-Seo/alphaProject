@@ -11,7 +11,7 @@
 	
 	<!-- 2.관리자 - 영화 데이터 수정 -->
 	<update id="updateMovie" parameterType="com.model.MovieDetailVo">
-		update movie_detail set moviename=#{moviename},release=#{release},rating=#{ratingcode},genre=#{genrecode},grade=#{grade},synopsis=#{synopsis},cast=#{cast},url=#{url},now=#{now} where num=#{num}
+		update movie_detail set moviename=#{moviename},release=#{release},rating=#{ratingcode},genre=#{genrecode},synopsis=#{synopsis},cast=#{cast},url=#{url},now=#{now} where num=#{num}
 	</update>
 
 	<!-- 3.관리자 - 영화 데이터 삭제 -->
