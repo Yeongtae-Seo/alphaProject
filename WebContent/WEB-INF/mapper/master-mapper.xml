@@ -30,4 +30,20 @@
 		select count(*) from(select rownum r,q.* from(select * from movie_detail order by num desc)q)qr
 	</select>
 	
+	<select id="getMovieByNo" resultType="com.model.MovieDetailVo" parameterType="java.lang.Integer">
+		select * from movie_detail where num=#{no}
+	</select>
+	
+	<insert id="addMovieFile" parameterType="com.model.MovieImageVo">
+		insert into movie_image values(movie_image_seq.nextval,#{fileurl},#{filename},#{parent})
+	</insert>
+	
+	<select id="showMovieFile" parameterType="java.lang.Integer" resultType="com.model.MovieImageVo">
+		select * from movie_image where parent=#{no}
+	</select>
+	
+	<delete id="deleteMovieFile" parameterType="java.lang.Integer">
+		delete from movie_image where parent=#{num}
+	</delete>
+	
 </mapper>

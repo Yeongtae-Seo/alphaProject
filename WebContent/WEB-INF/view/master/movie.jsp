@@ -56,4 +56,7 @@
 		<a href="/master/showMovie.do?num=${page.maxpage+1}"><button
 				type="button" class="w3-button w3-black w3-round-large">▶</button></a>
 	</c:if>
+	<br/>
+	<a href="/master/movieManager.do"><button type="button"
+					class="w3-button w3-black w3-round-large">상영작 등록</button></a>
 </div>

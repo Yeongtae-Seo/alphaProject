@@ -14,7 +14,7 @@ public class MovieDetailVo {
 	String cast; //배우
 	String url;  //동영상 url
 	int now; //현재 상영작 유뮤(1이 현재 상영, 2가 상영 예정) 
-	
+
 	public int getNum() {
 		return num;
 	}
