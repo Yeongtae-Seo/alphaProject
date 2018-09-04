@@ -10,12 +10,10 @@ public class MovieDetailVo {
 	int ratingcode;  //관람등급코드
 	String genrecode;  //장르코드
 	double grade;  //평점
-	String sysnoopsis;  //시놉시스
+	String synopsis;  //시놉시스
 	String cast; //배우
 	String url;  //동영상 url
 	int now; //현재 상영작 유뮤(1이 현재 상영, 2가 상영 예정) 
-	
-	
 	public int getNum() {
 		return num;
 	}
@@ -52,11 +50,11 @@ public class MovieDetailVo {
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
-	public String getSysnoopsis() {
-		return sysnoopsis;
+	public String getSynopsis() {
+		return synopsis;
 	}
-	public void setSysnoopsis(String sysnoopsis) {
-		this.sysnoopsis = sysnoopsis;
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
 	}
 	public String getCast() {
 		return cast;
@@ -80,8 +78,8 @@ public class MovieDetailVo {
 	@Override
 	public String toString() {
 		return "MovieDetailVo [num=" + num + ", movieName=" + movieName + ", release=" + release + ", ratingcode="
-				+ ratingcode + ", genrecode=" + genrecode + ", grade=" + grade + ", sysnoopsis=" + sysnoopsis
-				+ ", cast=" + cast + ", url=" + url + ", now=" + now + "]";
+				+ ratingcode + ", genrecode=" + genrecode + ", grade=" + grade + ", synopsis=" + synopsis + ", cast="
+				+ cast + ", url=" + url + ", now=" + now + "]";
 	}
 	
 

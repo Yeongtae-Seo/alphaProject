@@ -6,17 +6,17 @@
 
 	<!-- 1.관리자 - 영화 데이터 입력 -->
 	<insert id="addMovie" parameterType="com.model.MovieDetailVo">
-		insert into movie values(movie_detail_seq.nextval,#{moviename},#{release},#{ratingcode},#{genrecode},0,#{sysnopsis},#{cast},#{url},#{now})
+		insert into movie_detail values(movie_detail_seq.nextval,#{movieName},#{release},#{ratingcode},#{genrecode},#{grade},#{synopsis},#{cast},#{url},#{now})
 	</insert>
 	
 	<!-- 2.관리자 - 영화 데이터 수정 -->
 	<update id="updateMovie" parameterType="com.model.MovieDetailVo">
-		update movie_detail set moviename=#{moviename},release=#{release},rating=#{rating},genre=#{genre},grade=#{grade},sysnopsis=#{sysnopsis},cast=#{cast},url=#{url},now=#{now} where num=#{num}
+		update movie_detail set moviename=#{movieName},release=#{release},ratingcode=#{ratingcode},genrecode=#{genrecode},synopsis=#{synopsis},cast=#{cast},url=#{url},now=#{now} where num=#{num}
 	</update>
 
 	<!-- 3.관리자 - 영화 데이터 삭제 -->
 	<delete id="deleteMovie" parameterType="java.lang.Integer" >
-		delete from movie where num=#{num}
+		delete from movie_detail where num=#{num}
 	</delete>
 	
 	<!-- 4.영화 상세 정보 가져오기 -->
