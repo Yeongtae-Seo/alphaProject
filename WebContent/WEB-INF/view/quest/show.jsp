@@ -15,11 +15,13 @@
 						value="${qvo.regdate }" pattern="yy-MM-dd [HH:mm]" />
 			</small></th>
 		</tr>
+		<c:if test="${attach ne null }">
 		<tr>
 			<td colspan="3" style="text-align: right;"><a
 				href="<c:url value="${attach.furl }"/>" download>${attach.fname }</a></td>
 
 		</tr>
+		</c:if>
 		<tr>
 			<td colspan="3" style="height: 500px;"><c:out
 					value="${qvo.content }" escapeXml="true"></c:out></td>
