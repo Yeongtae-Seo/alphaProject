@@ -91,11 +91,19 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
+			<mvc:mapping path="/reserve/*"/>
+			<bean class="com.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/question/*"/>
+			<bean class="com.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
 			<mvc:mapping path="/index.do"/>
 			<ref bean="cert"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
+
 </beans>
 
 

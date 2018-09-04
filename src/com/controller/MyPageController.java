@@ -14,6 +14,7 @@ import com.dao.MemberDao;
 import com.model.MemberVo;
 
 @Controller
+@RequestMapping("/myPage")
 public class MyPageController {
 	@Autowired
 	MemberDao memberDao;

@@ -23,10 +23,24 @@ h1, h2, h3, h4, h5, h6 {
 	font-style: italic;
 }
 </style>
+
+<script>
+	var ing = false;
+	window.onbeforeunload = function(){
+
+			location.href="/logout.do";
+
+	}
+</script>
+<!-- <div class="w3-top" >
+	<div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing: 4px;">
+		<a href="#home" class="w3-bar-item w3-button">M o v i e</a> -->
+
 <div class="w3-top">
 	<div class="w3-bar w3-white w3-padding w3-card"
 		style="letter-spacing: 4px;">
 		<a href="/index.do" class="w3-bar-item w3-button">29 CINEMA</a>
+
 		<div class="w3-right w3-hide-small">
 			<c:choose>
 				<c:when test="${!empty sessionScope.auth}">
@@ -35,6 +49,8 @@ h1, h2, h3, h4, h5, h6 {
 						<a id="navA" href="/master/showmember.do"
 							class="w3-bar-item w3-button">Master Menu</a>
 					</c:if>
+					<a id="navB" href="/myPape/myPage.do" class="w3-bar-item w3-button">${sessionScope.auth.email}</a>
+
 					<a id="navA" href="/logout.do" class="w3-bar-item w3-button">Logout</a>
 					<a id="navA" href="/info.do?num=1&page=1&viewPage=1"
 						class="w3-bar-item w3-button">InFo</a>

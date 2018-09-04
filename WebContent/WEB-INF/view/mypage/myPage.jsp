@@ -33,7 +33,7 @@
   <div class="w3-card w3-container" style="min-height:460px">
   <br/>
   <h3>나의 정보관리</h3><br/>
-  <p class="w3-jumbo"><a href="/modifyHandle.do">📝</a></p>
+  <p class="w3-jumbo"><a href="/myPage/modifyHandle.do">📝</a></p>
   </div>
 </div>
 
@@ -41,7 +41,7 @@
   <div class="w3-card w3-container" style="min-height:460px">
   <br/>
   <h3>예매/구매내역</h3><br/>
-  <p class="w3-jumbo"><a href="/reserveHandle.do">🎬</a></p>
+  <p class="w3-jumbo"><a href="/myPage/reserveHandle.do?email=${person.email }">🎬</a></p>
   </div>
 </div>
 

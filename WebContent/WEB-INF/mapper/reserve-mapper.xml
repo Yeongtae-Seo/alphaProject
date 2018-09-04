@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reserve">
+	<select id="main" resultType="com.model.ReserveTimeVo"
+		parameterType="java.util.HashMap">
+		<!-- select d.timecode, to_char(starttime, 'HH24:MI') as startTime, to_char(endtime, 
+			'HH24:MI') as endTime, d.moviedate, d.moviecount, d.screencode, d.moviecode 
+			from reserve_time d where starttime >= to_date(#{thisTime}, 'yyyy/mm/dd HH24:MI') 
+			and moviedate = to_date(#{toDay}, 'yyyy/mm/dd') order by moviecount asc -->
+
+		select *
+		from
+			(select
+				d.timecode,
+				to_char(starttime, 'HH24:MI') as startTime,
+				to_char(endtime, 'HH24:MI') as endTime,
+				d.moviedate,
+				d.moviecount,
+				d.screencode,
+				d.moviecode
+			from
+				reserve_time d
+			where
+				starttime >= to_date(#{thisTime}, 'yyyy/mm/dd HH24:MI')
+			and
+				moviedate = to_date(#{toDay}, 'yyyy/mm/dd')
+			order by
+				moviecount asc
+			) r
+		left join
+			(select
+				num,
+				moviename
+			from
+				movie_detail
+			) m
+		on
+			r.moviecode = m.num
+
+
+	</select>
+
+	<select id="getReserve" resultType="com.model.ReserveTimeVo" parameterType="java.lang.String">
+		select 
+			r.*, m.moviename 
+		from 
+			(
+			select 
+				* 
+			from 
+				reserve_time 
+			where 
+				timecode = #{reserveCode}
+			) r 
+		left join 
+			movie_detail m 
+		on 
+			r.moviecode = m.num
+<!-- 			select 
+    s.*, d.selectseat
+from
+(select 
+			r.*, m.moviename 
+		from 
+			(
+			select 
+				* 
+			from 
+				reserve_time 
+			where 
+				timecode = #{reserveCode}
+			) r 
+		left join 
+			movie_detail m 
+		on 
+			r.moviecode = m.num) s
+left join
+    seat d
+    on d.timecode = s.timecode -->
+	</select>
+	
+	<select id="getSeatCode" resultType="java.lang.Integer">
+		select 
+			seat_seq.nextval
+		from
+			dual
+	</select>
+	
+	<insert id="insertSeat" parameterType="com.model.ReserveVo">
+		insert into seat values(#{seatCode}, #{screenCode}, #{selectSeat}, #{timeCode})
+	</insert>
+	
+	<insert id="insertReserve" parameterType="com.model.ReserveVo">
+		insert into reserve values(reserve_seq.nextval, #{email}, #{timeCode}, #{movieCode}, #{seatCode})
+	</insert>
+	
+	<select id="getSeat" resultType="java.lang.String" parameterType="java.lang.String">
+		select 
+    d.selectseat
+from
+(select 
+			r.*, m.moviename 
+		from 
+			(
+			select 
+				* 
+			from 
+				reserve_time 
+			where 
+				timecode = #{reserveCode}
+			) r 
+		left join 
+			movie_detail m 
+		on 
+			r.moviecode = m.num) s
+left join
+    seat d
+    on d.timecode = s.timecode
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

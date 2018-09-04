@@ -23,7 +23,6 @@
 				<textarea rows="8" cols="40" name="content" class="w3-input w3-border w3-sand" style="resize:none;"></textarea>
 			</p>
 			<p>
-				
 				<input type="file" name="infoFile" class="w3-btn w3-black"/>
 			</p>
 			<p>
