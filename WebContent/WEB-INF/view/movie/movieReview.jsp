@@ -54,8 +54,8 @@
 <div class="w3-Container">
 	<div class="w3-row w3-margin">
 		<div class="w3-col w3-container" style="width: 26%"></div>
-		<div
-			class="w3-col w3-container w3-border-top w3-padding-24 w3-border-bottomy"
+		<div id="rev"
+			class="w3-col w3-container w3-border-top w3-padding-24 w3-border-bottom"
 			style="width: 48%">
 			<c:forEach var="ar" items="${allReview }">
 				<div class="w3-row w3-margin w3-border-bottom w3-padding">
@@ -111,14 +111,16 @@
 				"regdate" : regdate
 			};
 		console.log(data);
+		
 		$.ajax({
 			"url" : "/movie/comment.do", //요청 경로
 			"method" : "post", //post 방식
 			"data" : data,
 			"async" : true
 		//비동기
-		}).done(function(r) {
-			//여기서 댓글 ㄷ시 받아서 바로 보이게 처리
+		}).done(function(data) {  
+			console.log(data);
+			$("#comments").val("");	
 		});
 	}
 	});

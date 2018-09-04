@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dao.MovieDao;
 import com.model.MemberVo;
@@ -102,9 +103,9 @@ public class MovieController {
 			String email = vo.getEmail();
 			mav.addObject("fr", moviedao.findReview(email,rvo.getNum()));
 		}
-		
-		mav.setViewName("detail");
+	
 		mav.addObject("allReview",moviedao.getReview(rvo.getNum()));  //전체 댓글 리스트
+		mav.addObject("rvo",rvo);  //댓글 갱신용
 		return mav;
 		
 	}
@@ -115,7 +116,5 @@ public class MovieController {
 	public String testHandle() {
 		return "/videoTest";	
 	}
-		
-	
 	
 }
