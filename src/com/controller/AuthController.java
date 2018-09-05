@@ -2,6 +2,7 @@ package com.controller;
 
 import java.sql.Date;
 import java.util.ArrayList;
+
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -21,6 +22,7 @@ import org.springframework.web.util.WebUtils;
 import com.dao.MemberDao;
 import com.google.gson.Gson;
 import com.model.MemberVo;
+import com.service.AuthMap;
 import com.service.Converter;
 
 @Controller
@@ -30,7 +32,8 @@ public class AuthController {
 	MemberDao memberDao;
 	@Autowired
 	Gson gson;
-
+	@Autowired
+	AuthMap auth;
 	
 	@RequestMapping("/logining.do")	// do는 컨트롤러로 갈 때
 	public ModelAndView loginHandle(@RequestParam Map map, HttpSession session, HttpServletResponse response) {
@@ -38,12 +41,12 @@ public class AuthController {
 		
 		System.out.println(map);
 		MemberVo vo = memberDao.findByEmailAndPass(map);
-		/*if(auth.map.containsKey(vo.getEmail())) {
-			((HttpSession) auth.map.get(vo.getEmail())).invalidate();
+		if(auth.map.containsKey(vo.getEmail())) {
+			((HttpSession) auth.map.get(vo.getEmail())).setAttribute("auth", null);;
 			auth.map.put(vo.getEmail(), session);
 		}else {
 			auth.map.put(vo.getEmail(), session);
-		}*/
+		}
 
 		
 		if(vo != null) {

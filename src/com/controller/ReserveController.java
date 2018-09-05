@@ -1,9 +1,9 @@
 package com.controller;
 
 
-import java.util.Date;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dao.MemberDao;
 import com.dao.ReserveDao;
 import com.model.ReserveTimeVo;
 import com.model.ReserveVo;
@@ -25,6 +26,8 @@ public class ReserveController {
 
 	@Autowired
 	ReserveDao reserveDao;
+	@Autowired
+	MemberDao memberDao;
 	
 	@RequestMapping("/page.do")
 	public ModelAndView moveReserve(@RequestParam int day) {
@@ -84,6 +87,7 @@ public class ReserveController {
 		int insertSeat = 0;
 		int insertReserve = 0;
 		ReserveTimeVo reserveTimeVo = reserveDao.getReserveTime((String) map.get("timeCode"));
+		
 		try {
 			for(int i=0; i<a.length ; i++) {
 				ReserveVo reserveVo = new ReserveVo();
@@ -96,6 +100,21 @@ public class ReserveController {
 				reserveVo.setTimeCode(reserveTimeVo.getTimeCode());
 				insertSeat = reserveDao.insertSeat(reserveVo);
 				insertReserve = reserveDao.insertReserve(reserveVo);
+				Map maps = new HashMap<>();
+				int d = reserveDao.getReserveCount((String)map.get("email"));
+				int grade = 0;
+				if(d >= 30) {
+					grade = 3;
+					maps.put("email", (String)map.get("email"));
+					maps.put("grade", grade);
+					memberDao.gradeUpdate(maps);
+				}else if(d >= 15) {
+					grade = 2;
+					maps.put("email", (String)map.get("email"));
+					maps.put("grade", grade);
+					memberDao.gradeUpdate(maps);
+				}
+				
 			}
 			
 			if((insertSeat == 1) && (insertReserve == 1)) {

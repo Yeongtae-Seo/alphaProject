@@ -117,6 +117,10 @@ left join
     seat d
     on d.timecode = s.timecode
 	</select>
+	
+	<select id="reserveCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from reserve where email = #{eamil}
+	</select>
 </mapper>
 
 

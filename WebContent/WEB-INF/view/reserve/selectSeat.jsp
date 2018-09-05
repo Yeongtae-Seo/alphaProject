@@ -7,6 +7,7 @@
 
 <div align="Center">
 	<h2>좌 석 선 택</h2>
+	<input type="hidden" name="grade" id="grade" value="${sessionScope.auth.grade }" />
 	<div style="width:25%" align="left">
 		인원 수 : <select name="nop" id="nop">
 		    <option value="1" selected="selected">1</option>
@@ -193,7 +194,13 @@
 							console.log("bsa");
 							document.getElementById(b).disabled = true;
 							document.getElementById("yourSeat").innerHTML = this.value;
-							document.getElementById("price").innerHTML = "5000" ;
+							if(document.getElementById("grade").value == 1){
+								document.getElementById("price").innerHTML = "8000" ;
+							}else if(document.getElementById("grade").value == 2){
+								document.getElementById("price").innerHTML = "7600" ;
+							}else if(document.getElementById("grade").value == 3){
+								document.getElementById("price").innerHTML = "7200" ;
+							}
 							document.getElementById("selectSeat").value = this.value + ",";
 						}
 					}
@@ -234,7 +241,14 @@
 								document.getElementById(b).disabled = true;
 								document.getElementById("yourSeat").innerHTML = 
 									document.getElementById(list[0]).value + "," + document.getElementById(list[1]).value;
-								document.getElementById("price").innerHTML = "10000" ;
+								if(document.getElementById("grade").value == 1){
+									document.getElementById("price").innerHTML = "16000" ;
+								}else if(document.getElementById("grade").value == 2){
+									document.getElementById("price").innerHTML = "15200" ;
+								}else if(document.getElementById("grade").value == 3){
+									document.getElementById("price").innerHTML = "14400" ;
+								}
+
 								document.getElementById("selectSeat").value = document.getElementById(list[0]).value + "," + document.getElementById(list[1]).value + ",";
 
 							}
@@ -274,6 +288,8 @@
 			}
 		}
 	}
+	
+
 </script>
 
 

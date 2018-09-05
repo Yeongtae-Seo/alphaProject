@@ -46,5 +46,9 @@ public class MemberDao {	// DB를 연결해줌
 		return template.delete("member.memberDel", email);
 	}
 	
+	public int gradeUpdate(Map map) {
+		return template.update("member.gradeUpdate", map);
+	}
+	
 	
 }
