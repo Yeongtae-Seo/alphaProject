@@ -3,11 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<body onscroll="SetDivPosition()">
 <!-- 영화 평점 및 리뷰 입력 -->
-<div class="w3-center">
-	<h4>평점 및 영화 리뷰</h4>
-<div><a href="/movie/movieDetail.do?num=${num}"><image src="/img/re.png" style="width:50px;height:50px; left:200px;"/></a></div>
+<div class="w3-rows">
+	<div class="w3-col w3-container" style="width:40%;"></div>
+	<div class="w3-col w3-center" style="width:20%;">
+		<span style="font-size:20px; font-weight:bold;">평점 및 영화 리뷰</span>
+	</div>
+	<div class="w3-col" style="width:40%;">
+		<a href="/movie/movieDetail.do?num=${num}">
+	<image src="/img/ree.png" style="width:230px;height:50px; left:200px;"/></a>
+	</div>
 </div>
 <div>
 	<div class="w3-row">
@@ -89,7 +95,7 @@
 <br />
 <br />
 <br />
-
+</body>
 
 <script>
 	var rd = new Date();
@@ -101,6 +107,9 @@
 	
 	console.log(typeof num);
 	$("#submit").on("click", function() {
+		$("#rev").focus();
+		$("#rev").blur();
+		
 		if ($("#usergrade").val() == null || $("#usergrade").val() == "" || $("textarea").val()== "" || $("textarea").val()== null) {
 			window.alert("평점과 리뷰를 작성해 주세요");
 		} else {

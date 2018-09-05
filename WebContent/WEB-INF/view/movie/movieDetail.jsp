@@ -96,7 +96,7 @@ em#re {
 	</div>
 	<div class="w3-Container w3-col" style="width: 31%;">
 		<h3 class="w3-serif w3-border-bottom">${movie[0].MOVIENAME}</h3>
-		<b>관람 평점</b> : <em>${g[0].grade/g[0].cnt}</em><br/>
+		<b>관람 평점</b> : <em><fmt:formatNumber value="${g[0].grade/g[0].cnt}" pattern=".0"/> </em><br/>
 		<b>관람 등급</b> : ${movie[0].RATING}<br /> <b>개봉일</b> :
 		<fmt:formatDate value="${movie[0].RELEASE }" pattern="yyyy-MM-dd" />
 		<br /> <b>장르</b> : ${movie[0].GENRE }<br /> <b>출연진</b> :
@@ -115,7 +115,7 @@ em#re {
 
 <!-- 영화 시놉시스 -->
 <div class="w3-center">
-	<h4>줄거리</h4>
+	<span style="font-size:20px; font-weight:bold;">줄거리</span>
 </div>
 <div class="w3-row">
 	<div class="w3-col w3-container" style="width: 26%"></div>
