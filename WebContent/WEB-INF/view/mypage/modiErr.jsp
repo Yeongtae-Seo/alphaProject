@@ -7,6 +7,6 @@
 	<h1>Error</h1>	
 	<p>
 		<a href="/index.do"><button class="w3-button w3-black w3-round-large" type="button">main</button></a>
-		<a href="/myPage.do"><button class="w3-button w3-black w3-round-large" type="button">return</button></a>
+		<a href="/myPage/myPage.do"><button class="w3-button w3-black w3-round-large" type="button">return</button></a>
 	</p>
 </div>
