@@ -1,7 +1,9 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -102,7 +104,26 @@ public class MyPageController {
 		return mav;
 	}
 	
+	
+	@RequestMapping("/cancelPage.do")	// 예매취소 완료
+	public ModelAndView cancelHandle(@RequestParam Map map) {
+		ModelAndView mav = new ModelAndView();
+		List<String> list = new ArrayList<>(map.keySet());
+		int del = 0;
+		for(int i=0; i<list.size(); i++) {
+			int no = Integer.parseInt(list.get(i));
+			del = myTicketDao.ticketDel(no);
+			myTicketDao.ticketRem(no);
+		}
+		if(del == 1) {	// 삭제되면 
+			mav.setViewName("cancelPage");
+		}else {
+			mav.setViewName("joinErr");
+		}
+		return mav;
+	}
 
+	
 	
 	
 

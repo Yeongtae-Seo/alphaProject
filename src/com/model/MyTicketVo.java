@@ -4,30 +4,56 @@ import java.sql.Date;
 
 public class MyTicketVo {
 
-	String moviename;
-	Date moviedate;
-	String name;
+	int reservecode;
+	String email;
+	String timecode;
+	int moviecode;
+	int seatcode;
+	int screencode;
 	String selectseat;
-	String starttime;
+	Date starttime;
+	Date endtime;
+	Date moviedate;
+	int moviecount;
+	String name;
+	String moviename;
+	String starttimes;
 	
-	
-	public String getMoviename() {
-		return moviename;
+	public int getReservecode() {
+		return reservecode;
 	}
-	public void setMoviename(String moviename) {
-		this.moviename = moviename;
+	public void setReservecode(int reservecode) {
+		this.reservecode = reservecode;
 	}
-	public Date getMoviedate() {
-		return moviedate;
+	public String getEmail() {
+		return email;
 	}
-	public void setMoviedate(Date moviedate) {
-		this.moviedate = moviedate;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getName() {
-		return name;
+	public String getTimecode() {
+		return timecode;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTimecode(String timecode) {
+		this.timecode = timecode;
+	}
+	public int getMoviecode() {
+		return moviecode;
+	}
+	public void setMoviecode(int moviecode) {
+		this.moviecode = moviecode;
+	}
+	public int getSeatcode() {
+		return seatcode;
+	}
+	public void setSeatcode(int seatcode) {
+		this.seatcode = seatcode;
+	}
+	public int getScreencode() {
+		return screencode;
+	}
+	public void setScreencode(int screencode) {
+		this.screencode = screencode;
 	}
 	public String getSelectseat() {
 		return selectseat;
@@ -35,18 +61,55 @@ public class MyTicketVo {
 	public void setSelectseat(String selectseat) {
 		this.selectseat = selectseat;
 	}
-	public String getStarttime() {
+	public Date getStarttime() {
 		return starttime;
 	}
-	public void setStarttime(String starttime) {
+	public void setStarttime(Date starttime) {
 		this.starttime = starttime;
+	}
+	public Date getEndtime() {
+		return endtime;
+	}
+	public void setEndtime(Date endtime) {
+		this.endtime = endtime;
+	}
+	public Date getMoviedate() {
+		return moviedate;
+	}
+	public void setMoviedate(Date moviedate) {
+		this.moviedate = moviedate;
+	}
+	public int getMoviecount() {
+		return moviecount;
+	}
+	public void setMoviecount(int moviecount) {
+		this.moviecount = moviecount;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getMoviename() {
+		return moviename;
+	}
+	public void setMoviename(String moviename) {
+		this.moviename = moviename;
+	}
+	public String getStarttimes() {
+		return starttimes;
+	}
+	public void setStarttimes(String starttimes) {
+		this.starttimes = starttimes;
 	}
 	
 	@Override
 	public String toString() {
-		return "MyTicketVo [moviename=" + moviename + ", moviedate=" + moviedate + ", name=" + name + ", selectseat="
-				+ selectseat + ", starttime=" + starttime + "]";
+		return "MyTicketVo [reservecode=" + reservecode + ", email=" + email + ", timecode=" + timecode + ", moviecode="
+				+ moviecode + ", seatcode=" + seatcode + ", screencode=" + screencode + ", selectseat=" + selectseat
+				+ ", starttime=" + starttime + ", endtime=" + endtime + ", moviedate=" + moviedate + ", moviecount="
+				+ moviecount + ", name=" + name + ", moviename=" + moviename + ", starttimes=" + starttimes + "]";
 	}
-	
 	
 }

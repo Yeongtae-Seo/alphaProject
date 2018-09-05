@@ -16,27 +16,28 @@
 <br />
 <br />
 <br />
+
 <table class="w3-table-all w3-card-4 w3-hoverable">
-
-
+<form action="/myPage/cancelPage.do">
 	<tr>
 		<th><input type="checkbox"></th>
 		<th style="width: 30%">영화제목</th>
 		<th>예약정보</th>
-
 	</tr>
 	<c:forEach items="${list }" var="ticketing">
 		<tr>
-			<td><input type="checkbox"></td>
+			<td><input type="checkbox" name="${ticketing.seatcode }" value="${ticketing.seatcode }"></td>
 			<td>${ticketing.moviename }
 			</td>
 			<td>${ticketing.moviedate }(${ticketing.starttime })&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;${ticketing.selectseat }&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;${ticketing.name }
 			</td>
 		</tr>
 	</c:forEach>
-
-
 </table>
+	<p align="center">
+		<button class="w3-button w3-black w3-round-large" type="submit">cancel</button></a>
+	</p>
+	</form>
 </div>
 </div>
 

@@ -17,5 +17,12 @@ public class MyTicketDao {
 		return template.selectList("myTicket.ticketList", email);
 	}
 
+	public int ticketDel(int num) {
+		return template.delete("myTicket.ticketDel", num);
+	}
+	
+	public int ticketRem(int num) {
+		return template.delete("myTicket.ticketRem", num);
+	}
 	
 }

@@ -3,9 +3,15 @@
 <mapper namespace="myTicket">
 
 <select id="ticketList" resultType="com.model.MyTicketVo" parameterType="java.lang.String">
-select pp.moviename, pp.moviedate, pp.name, pp.selectseat, to_char(pp.starttime, 'HH24:MI') as startTime from (select p.*, md.moviename from (select a.*, b.name from (select rs.*, rt.starttime, rt.endtime, rt.moviedate, rt.moviecount  from (
-(select r.*, s.SCREENCODE, s.SELECTSEAT from reserve r join seat s on (r.SEATCODE = s.SEATCODE) where email=#{email} order by r.RESERVECODE) rs
-join reserve_time rt on rs.timecode = rt.timecode)) a left join screen b on a.screencode = b.screencode) p left join movie_detail md on p.moviecode = md.num order by reservecode desc) pp
+	select pp.*, to_char(pp.starttime, 'HH24:MI') as startTimes from (select p.*, md.moviename from (select a.*, b.name from (select rs.*, rt.starttime, rt.endtime, rt.moviedate, rt.moviecount  from (
+   (select r.*, s.SCREENCODE, s.SELECTSEAT from reserve r join seat s on (r.SEATCODE = s.SEATCODE) where email=#{email} order by r.RESERVECODE) rs
+   join reserve_time rt on rs.timecode = rt.timecode)) a left join screen b on a.screencode = b.screencode) p left join movie_detail md on p.moviecode = md.num order by reservecode desc) pp
 </select>
+<delete id="ticketDel" parameterType="java.lang.Integer">
+	delete from seat where seatcode=#{num}
+</delete>
+<delete id="ticketRem" parameterType="java.lang.Integer">
+	delete from reserve where seatcode=#{num}
+</delete>
 
 </mapper>
