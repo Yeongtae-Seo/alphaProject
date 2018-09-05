@@ -44,7 +44,10 @@ public class ReserveDao {
 	public List<String> getSeat(String reserveCode){
 		return template.selectList("reserve.getSeat", reserveCode);
 	}
-
+	
+	public int getReserveCount(String email) {
+		return template.selectOne("reserve.reserveCount", email);
+	}
 }
 
 

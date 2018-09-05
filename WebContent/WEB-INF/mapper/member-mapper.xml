@@ -28,4 +28,8 @@
 	<delete id="memberDel">	<!-- id는 dao에서 어떤거 쓸지 똑같이 -->
 		delete from member where email=#{email}	<!-- 지울때는 primary 나 unique -->
 	</delete>
+
+	<update id="gradeUpdate" parameterType="java.util.HashMap">
+		update member set grade = #{grade} where email = #{email}
+	</update>
 </mapper>
