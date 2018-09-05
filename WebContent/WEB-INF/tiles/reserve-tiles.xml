@@ -26,5 +26,12 @@
 			<put-attribute name="contents" value="/WEB-INF/view/reserve/reserveSuccess.jsp"/>
 		</definition>
 		
+		<definition name="reserveFail" template="/WEB-INF/view/layout.jsp">
+			<put-attribute name="nav" value="/WEB-INF/view/main/nav.jsp"/>
+			<put-attribute name="logo" value="/WEB-INF/view/main/logo.jsp"/>
+			<put-attribute name="menu" value="/WEB-INF/view/main/menu.jsp"/>
+			<put-attribute name="contents" value="/WEB-INF/view/reserve/reserveFail.jsp"/>
+		</definition>
+		
 		
 </tiles-definitions>

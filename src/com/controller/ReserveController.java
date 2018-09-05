@@ -2,6 +2,7 @@ package com.controller;
 
 
 import java.util.Date;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
@@ -78,47 +79,35 @@ public class ReserveController {
 	@RequestMapping("/seatSelect.do")
 	public ModelAndView seatSelect(@RequestParam Map map) {
 		ModelAndView mav = new ModelAndView();
-		/*ReserveTimeVo reserveTimeVo = reserveDao.getReserveTime((String) map.get("timeCode"));
-		ReserveVo reserveVo = new ReserveVo();
-		reserveVo.setEmail((String)map.get("email"));
-		reserveVo.setMovieCode(reserveTimeVo.getMovieCode());
-		reserveVo.setScreenCode(reserveTimeVo.getScreenCode());
-		reserveVo.setSelectSeat((String)map.get("checkSeat"));
-		int seatCode = reserveDao.getSeatCode();
-		reserveVo.setSeatCode(seatCode);
-		reserveVo.setTimeCode(reserveTimeVo.getTimeCode());
-		int insertSeat = reserveDao.insertSeat(reserveVo);
-		int insertReserve = reserveDao.insertReserve(reserveVo);
-		
-		if((insertSeat == 1) && (insertReserve == 1)) {
-			mav.setViewName("reserveSuccess");
-		}else {
-			mav.setViewName("reserveFail");
-		}*/
 		String c = (String) map.get("selectSeat");
 		String[] a = c.split(",");
 		int insertSeat = 0;
 		int insertReserve = 0;
-		for(int i=0; i<a.length ; i++) {
-			ReserveTimeVo reserveTimeVo = reserveDao.getReserveTime((String) map.get("timeCode"));
-			ReserveVo reserveVo = new ReserveVo();
-			reserveVo.setEmail((String)map.get("email"));
-			reserveVo.setMovieCode(reserveTimeVo.getMovieCode());
-			reserveVo.setScreenCode(reserveTimeVo.getScreenCode());
-			reserveVo.setSelectSeat(a[i]);
-			int seatCode = reserveDao.getSeatCode();
-			reserveVo.setSeatCode(seatCode);
-			reserveVo.setTimeCode(reserveTimeVo.getTimeCode());
-			insertSeat = reserveDao.insertSeat(reserveVo);
-			insertReserve = reserveDao.insertReserve(reserveVo);
+		ReserveTimeVo reserveTimeVo = reserveDao.getReserveTime((String) map.get("timeCode"));
+		try {
+			for(int i=0; i<a.length ; i++) {
+				ReserveVo reserveVo = new ReserveVo();
+				reserveVo.setEmail((String)map.get("email"));
+				reserveVo.setMovieCode(reserveTimeVo.getMovieCode());
+				reserveVo.setScreenCode(reserveTimeVo.getScreenCode());
+				reserveVo.setSelectSeat(a[i]);
+				int seatCode = reserveDao.getSeatCode();
+				reserveVo.setSeatCode(seatCode);
+				reserveVo.setTimeCode(reserveTimeVo.getTimeCode());
+				insertSeat = reserveDao.insertSeat(reserveVo);
+				insertReserve = reserveDao.insertReserve(reserveVo);
+			}
+			
+			if((insertSeat == 1) && (insertReserve == 1)) {
+				mav.setViewName("reserveSuccess");
+			}else {
+				mav.setViewName("reserveFail");
+			}
 		}
-		
-		if((insertSeat == 1) && (insertReserve == 1)) {
-			mav.setViewName("reserveSuccess");
-		}else {
+		catch(Exception e) {
+			mav.addObject("reserveCode", reserveTimeVo.getTimeCode());
 			mav.setViewName("reserveFail");
 		}
-		
 		System.out.println(map.get("selectSeat"));
 		return mav;
 		
