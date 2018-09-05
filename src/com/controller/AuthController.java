@@ -1,10 +1,9 @@
 package com.controller;
 
 import java.sql.Date;
-
+import java.util.ArrayList;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,6 +44,7 @@ public class AuthController {
 			auth.map.put(vo.getEmail(), session);
 		}*/
 
+		
 		if(vo != null) {
 			session.setAttribute("auth", vo);	// 로그인 성공하면 세션에 넣어두기
 			

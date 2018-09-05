@@ -51,7 +51,7 @@ em#re {
 
 <!-- 영화 트레일러 영역 -->
 <div class="w3-Container w3-black w3-center w3-padding-16">
-	<div id="all_body"></div>
+	<%-- <div id="all_body"></div>
 	<div id="lay_pop" style="background-color: black;">
 		<div align="right">
 			<a href="javascript:;" onclick="layerClose('lay_pop','all_body')"><img
@@ -59,30 +59,31 @@ em#re {
 		</div>
 		<br />
 		<iframe style="width: 100%; height: 80%;" id="trailer"
-			src="https://www.youtube.com/embed/52WsO33F4qg"
+			src="http://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/201808/13081_301_1.mp4"
 			frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>트레일러</iframe>
 	</div>
-	<!--<div id="all_body"></div> -->
-
+	<div id="all_body"></div> 
+	--%>
 	<!-- =============================================================================== -->
-	<div class="box w3-row">
+ 	<div class="box w3-row">
 		<div class="w3-col w3-container" style="width: 26%"></div>
 		<div class="w3-col w3-container" style="width: 48%">
 		<iframe style="width: 90%; height: 70%;" id="trailer"
-			src="https://www.youtube.com/embed/52WsO33F4qg"
+			src="${movie[0].URL}"
 			frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>트레일러</iframe>
-			<!-- <img onclick="pushLayer()" src="/img/play.png" /> -->
-			<!--  <table border="0" cellpadding="0" cellspacing="0">
+		<!-- <img onclick="pushLayer()" src="/img/play.png" /> -->
+			<table border="0" cellpadding="0" cellspacing="0">
 				<tr>
 					<td id="tdtd">
 
 					</td>
 				</tr>
 			</table> 
-			-->
+			
 		</div>
 		<div class="w3-col w3-container" style="width: 26%"></div>
 	</div>
+
 </div>
 
 
@@ -91,7 +92,7 @@ em#re {
 <div class="w3-row">
 	<div class="w3-col w3-container" style="width: 26%"></div>
 	<div class="w3-Container w3-col" style="width: 17%">
-		<image style="max-width:100%;" src="http://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/201808/13109_103_1.jpg" alt="포스터"/>
+		<image style="max-width:100%;" src="${image[0].FILEURL }" alt="포스터"/>
 		<br />
 	</div>
 	<div class="w3-Container w3-col" style="width: 31%;">
@@ -130,7 +131,8 @@ em#re {
 <br />
 <br />
 
-<!-- 비디오(영화 트레일러)
+<!-- 
+ 비디오(영화 트레일러)
 <script >
 	function pushLayer() {
 		var $width = parseInt($("#lay_pop").css("width"));
@@ -153,4 +155,4 @@ em#re {
 		$("#" + lay1).css("display", "none");
 		$("#" + lay2).css("display", "none");
 	}
-</script> -->
+</script>  -->
