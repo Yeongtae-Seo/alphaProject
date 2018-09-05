@@ -34,6 +34,27 @@
 		</tr>
 	</c:forEach>
 </table>
+
+		<div class="w3-bar" align="center">
+			<c:if test = "${page.page ne 1}" >	<!-- 뒤로가기 버튼은 1이 아닐 때만 나옴 -->
+				<a href="/myPage/historyHandle.do?num=${page.minpage-5}" ><button type="button" class="w3-button w3-black w3-round-large">◀</button></a>
+			</c:if>
+			<c:forEach var="i" begin="${page.minpage }" end="${page.maxpage }">
+				<c:choose>
+					<c:when test="${i eq page.num }">	<!-- i와 페이지넘버가 같으면 해야할 버튼처리 -->
+						<span class="w3-button">${i }</span>
+					</c:when>
+					<c:otherwise>
+						<a href="/myPage/historyHandle.do?num=${i }" class="w3-button"><span>${i}</span></a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test = "${page.maxpage lt page.max}" >
+				<a href="/myPage/historyHandle.do?num=${page.maxpage+1}"><button type="button" class="w3-button w3-black w3-round-large">▶</button></a>
+			</c:if>
+		</div>
+
+
 	<p align="center">
 		<button class="w3-button w3-black w3-round-large" type="submit">cancel</button></a>
 	</p>

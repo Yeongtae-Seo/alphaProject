@@ -36,6 +36,7 @@ public class AuthController {
 	@RequestMapping("/logining.do")	// do는 컨트롤러로 갈 때
 	public ModelAndView loginHandle(@RequestParam Map map, HttpSession session, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
+		
 		System.out.println(map);
 		MemberVo vo = memberDao.findByEmailAndPass(map);
 		/*if(auth.map.containsKey(vo.getEmail())) {
@@ -135,8 +136,9 @@ public class AuthController {
 		}
 		return "{\"rst\": \""+t+"\"}";
 	}
-	
 
+	
+	
 	
 	
 

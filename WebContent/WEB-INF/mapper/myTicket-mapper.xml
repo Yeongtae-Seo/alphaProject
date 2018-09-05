@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="myTicket">
 
-<select id="ticketList" resultType="com.model.MyTicketVo" parameterType="java.lang.String">
-	select pp.*, to_char(pp.starttime, 'HH24:MI') as startTimes from (select p.*, md.moviename from (select a.*, b.name from (select rs.*, rt.starttime, rt.endtime, rt.moviedate, rt.moviecount  from (
+<select id="ticketList" resultType="com.model.MyTicketVo" parameterType="java.util.Map">
+	select ttt.* from (select rownum r, pp.*, to_char(pp.starttime, 'HH24:MI') as startTimes from (select p.*, md.moviename from (select a.*, b.name from (select rs.*, rt.starttime, rt.endtime, rt.moviedate, rt.moviecount  from (
    (select r.*, s.SCREENCODE, s.SELECTSEAT from reserve r join seat s on (r.SEATCODE = s.SEATCODE) where email=#{email} order by r.RESERVECODE) rs
-   join reserve_time rt on rs.timecode = rt.timecode)) a left join screen b on a.screencode = b.screencode) p left join movie_detail md on p.moviecode = md.num order by reservecode desc) pp
+   join reserve_time rt on rs.timecode = rt.timecode)) a left join screen b on a.screencode = b.screencode) p left join movie_detail md on p.moviecode = md.num order by reservecode desc) pp)ttt where ttt.r between #{num}*10-9 and #{num}*10
 </select>
 <delete id="ticketDel" parameterType="java.lang.Integer">
 	delete from seat where seatcode=#{num}
@@ -13,5 +13,11 @@
 <delete id="ticketRem" parameterType="java.lang.Integer">
 	delete from reserve where seatcode=#{num}
 </delete>
+
+<select id="getfindlistCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+ 	select COUNT(*) from(select pp.*, to_char(pp.starttime, 'HH24:MI') as startTimes from (select p.*, md.moviename from (select a.*, b.name from (select rs.*, rt.starttime, rt.endtime, rt.moviedate, rt.moviecount  from (
+   (select r.*, s.SCREENCODE, s.SELECTSEAT from reserve r join seat s on (r.SEATCODE = s.SEATCODE) where email=#{email} order by r.RESERVECODE) rs
+   join reserve_time rt on rs.timecode = rt.timecode)) a left join screen b on a.screencode = b.screencode) p left join movie_detail md on p.moviecode = md.num order by reservecode desc) pp)ttt 
+</select>
 
 </mapper>

@@ -1,9 +1,9 @@
 package com.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -95,15 +96,35 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/historyHandle.do")
-	public ModelAndView ticketingHandle(@RequestParam Map map) {
+	public ModelAndView ticketingHandle(@SessionAttribute(name="auth") MemberVo vo, @RequestParam (value="num", defaultValue="1")int num) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(map.get("email"));
-		List<MyTicketVo> list = myTicketDao.findList((String) map.get("email"));
+		Map<String,Object> map = new HashMap<>();
+		map.put("email", vo.getEmail());
+		map.put("num", num);
+		List<MyTicketVo> list = myTicketDao.findList(map);
+		
+		int count = myTicketDao.getfindlistCount(vo.getEmail());
+		int max = count / 10 + ((count % 10) > 0 ? 1 : 0);
+		int page = (num/5)+ ((num % 5) > 0 ? 1 : 0);
+		int minpage = page * 5 - 4;
+		int maxpage = page * 5;
+		if (maxpage > max) {
+			maxpage = max;
+		}
+
+		Map<String, Object> pages = new HashMap<String, Object>();
+
+		pages.put("max", max);
+		pages.put("page", page);
+		pages.put("minpage", minpage);
+		pages.put("maxpage", maxpage);
+		pages.put("num", num);
+		
+		mav.addObject("page", pages);
 		mav.addObject("list", list);
 		mav.setViewName("ticketingPage");
 		return mav;
 	}
-	
 	
 	@RequestMapping("/cancelPage.do")	// 예매취소 완료
 	public ModelAndView cancelHandle(@RequestParam Map map) {
@@ -123,8 +144,5 @@ public class MyPageController {
 		return mav;
 	}
 
-	
-	
-	
 
 }
