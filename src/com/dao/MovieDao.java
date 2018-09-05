@@ -60,9 +60,9 @@ public class MovieDao {
 	}
 	
 	//9.mongoDB 리뷰 가져오기
-	public List<MovieReviewVo> getReview(int num) {
+	public List<Map> getReview(int num) {
 		Query query = (Query) new BasicQuery(new Document().append("num",num));
-		return mongo.find(query, MovieReviewVo.class, "reviewTest");
+		return mongo.find(query, java.util.Map.class, "reviewTest");
 	}
 	
 	//10.영화 평점 처리
@@ -88,26 +88,4 @@ public class MovieDao {
 		Query query = (Query) new BasicQuery(new Document().append("email",email).append("num",num));
 		return mongo.find(query, java.util.Map.class, "reviewTest");
 	}
-	
-	//14.리뷰 전체 갯수 받아오기
-	public int getReviewCount(int num) {
-		Query query =  new BasicQuery(new Document().append("num",num));
-		return mongo.find(query, java.util.Map.class, "reviewTest").size();
-	}
-	
-	//15.리뷰 10개씩
-	public List<Map> getReviewLimit(int num, int p) {
-		
-		Query query =  new BasicQuery(new Document().append("num",num));
-		List<Map> list =  mongo.find(query, java.util.Map.class, "reviewTest");  //전체 데이터 가져와서
-		int start = (p-1)*10; //시작값
-		int end =  p*10 > list.size() ? list.size() : p*10;  //끝값
-		
-		return list.subList(start, end);  //잘라서 가져오기
-	}
 }
-
-
-// 0 ~ 23  : 0/10 (0-9) : 10,20(10~19),  20,30(20~29)
-
-
