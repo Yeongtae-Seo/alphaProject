@@ -12,10 +12,10 @@ em {
 <div style="height: 20px"></div>
 <!-- 상단 여백 -->
 
-<div class="w3-container" align="center">
+<!-- <div class="w3-container" align="center">
 	<a href="/movie/movieManager.do"><button class="w3-button w3-green">DB
 			관리</button></a>
-</div>
+</div> -->
 <!-- 영화 -->
 <div class="w3-row-padding">
 <c:forEach var="mo" items="${movie}" varStatus="mv">
