@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dao.MovieDao;
 import com.model.MemberVo;
@@ -51,13 +51,37 @@ public class MovieController {
 	
 	//영화 상세 페이지
 	@RequestMapping("/movieDetail.do")
-	public ModelAndView detailHandle(@RequestParam("num") int num, HttpSession session) {
+	public ModelAndView detailHandle(@RequestParam("num") int num,@RequestParam(value="p", defaultValue="1") int p ,HttpSession session) {
+		
+		//===========페이징 처리용
+		int count = moviedao.getReviewCount(num);  //해당 영화의 전체 리뷰 갯수 가져오기 
+
+		int max = count / 10 + ((count % 10) > 0 ? 1 : 0);  
+		int page = (p / 5) + ((p % 5) > 0 ? 1 : 0);  
+		int minpage = page * 5 - 4;
+		int maxpage = page * 5;
+		if (maxpage > max) {
+			maxpage = max;
+		}
+		
+		Map<String, Object> pages = new HashMap<String, Object>();  //페이지 정보가 들어있는 맵
+
+		pages.put("max", max);
+		pages.put("page", page);
+		pages.put("minpage", minpage);
+		pages.put("maxpage", maxpage);
+		pages.put("num", num);
+		
+		//System.out.println(max+"/"+page+"/"+minpage+"/"+maxpage+"/"+p);
+		//===========
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("movie", moviedao.getMovie(num));  //영화 전체 정보 가져오기
-		mav.addObject("allReview",moviedao.getReview(num));  //전체 댓글 리스트
-		mav.addObject("g",moviedao.findGradeInc(num));
-		mav.addObject("num",num);
+		mav.addObject("movie", moviedao.getMovie(num));  //영화 전체 정보 가져오기		
+		mav.addObject("g",moviedao.findGradeInc(num));  //평점 처리용 테이블에 있는지 확인용
+		mav.addObject("num",num);  //영화 번호
+		mav.addObject("image", moviedao.getMovieGrade()); //영화 이미지 가져오려고
+		mav.addObject("page",pages);  //페이징 처리용
+		mav.addObject("limit",moviedao.getReviewLimit(num, p));
 		if(session.getAttribute("auth") == null) {
 			
 		}else {
@@ -104,7 +128,7 @@ public class MovieController {
 			mav.addObject("fr", moviedao.findReview(email,rvo.getNum()));
 		}
 		mav.setViewName("detail");
-		mav.addObject("allReview",moviedao.getReview(rvo.getNum()));  //전체 댓글 리스트
+		//mav.addObject("allReview",moviedao.getReview(rvo.getNum()));  //전체 댓글 리스트
 		return mav;	
 	}
 

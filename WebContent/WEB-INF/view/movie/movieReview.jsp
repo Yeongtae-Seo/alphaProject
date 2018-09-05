@@ -3,11 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<body onscroll="SetDivPosition()">
 <!-- 영화 평점 및 리뷰 입력 -->
-<div class="w3-center">
-	<h4>평점 및 영화 리뷰</h4>
-<div><a href="/movie/movieDetail.do?num=${num}"><image src="/img/re.png" style="width:50px;height:50px; left:200px;"/></a></div>
+<div class="w3-rows">
+	<div class="w3-col w3-container" style="width:40%;"></div>
+	<div class="w3-col w3-center" style="width:20%;">
+		<span style="font-size:20px; font-weight:bold;">평점 및 영화 리뷰</span>
+	</div>
+	<div class="w3-col" style="width:40%;">
+		<button class="w3-button" onclick="refresh();"> 
+	<image src="/img/ree.png" style="width:230px;height:50px; left:200px;"/></button>
+	</div>
 </div>
 <div>
 	<div class="w3-row">
@@ -58,7 +64,7 @@
 		<div id="rev"
 			class="w3-col w3-container w3-border-top w3-padding-24 w3-border-bottom"
 			style="width: 48%">
-			<c:forEach var="ar" items="${allReview }">
+			<c:forEach var="ar" items="${limit }">
 				<div class="w3-row w3-margin w3-border-bottom w3-padding">
 					<div class="w3-col w3-container w3-border-right" style="width: 80%">
 						<!-- 평점, 리뷰내용, 작성 날짜 -->
@@ -66,7 +72,7 @@
 						<c:forEach begin="1" end="${ar.grade }" varStatus="vs">			
 									⭐
 						</c:forEach>
-						) <em id="re">${ar.grade}</em> | <small>${ar.regdate}</small> <br />
+						) <em id="re">${ar.grade}</em> | <small><fmt:formatDate value="${ar.regdate}" pattern="yyyy-MM-dd"/></small> <br />
 						<p>${ar.comments }</p>
 					</div>
 					<div class="w3-col w3-container w3-center w3-margin-top"
@@ -74,33 +80,46 @@
 				</div>
 			</c:forEach>
 		</div>
-
 		<div class="w3-col w3-container" style="width: 26%"></div>
 	</div>
 </div>
 <br />
 <br />
+<div class="w3-bar" align="center">
+			<c:if test = "${page.page ne 1}" >
+				<a href="/movie/movieDetail.do?num=${num}&p=${page.minpage-5}" ><button type="button" class="w3-button w3-black w3-round-large">◀</button></a>
+			</c:if>
+			<c:forEach var="i" begin="${page.minpage }" end="${page.maxpage }">
+				<c:choose>
+					<c:when test="${i eq page.num }">
+						<span class="w3-button">${i }</span>
+					</c:when>
+					<c:otherwise>
+						<a href="/movie/movieDetail.do?num=${num}&p=${i }" class="w3-button"><span>${i}</span></a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test = "${page.maxpage lt page.max}" >
+				<a href="/movie/movieDetail.do?num=${num}&p=${page.maxpage+1}"><button type="button" class="w3-button w3-black w3-round-large">▶</button></a>
+			</c:if>
+		</div>
 <br />
 <br />
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
+</body>
 
 <script>
 	var rd = new Date();
-	var regdate = rd.getFullYear() + "-" + (rd.getMonth() + 1) + "-"
-			+ rd.getDate();
 	var num = ${num};
 	var email = "${sessionScope.auth.email}";
 
 	
 	console.log(typeof num);
 	$("#submit").on("click", function() {
+		
+		$("#rev").focus();
+		$("#rev").blur();
+		
 		if ($("#usergrade").val() == null || $("#usergrade").val() == "" || $("textarea").val()== "" || $("textarea").val()== null) {
 			window.alert("평점과 리뷰를 작성해 주세요");
 		} else {
@@ -110,7 +129,7 @@
 				"grade" : $("#usergrade").val(),
 				"comments" : $("textarea").val(),
 				"username" : "${sessionScope.auth.name}",
-				"regdate" : regdate
+				"regdate" : rd
 			};
 		console.log(data);
 		
@@ -134,5 +153,10 @@
 		 } 
 		 $("#countdown").val(150-$(target).val().length );
 	};
+	//==================================================
+		
+	function refresh(){
+		window.location.reload(true);  //강제 새로고침
+	}
 	
 </script>
