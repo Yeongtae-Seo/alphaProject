@@ -47,7 +47,6 @@ public class AuthController {
 
 		if(vo != null) {
 			session.setAttribute("auth", vo);	// 로그인 성공하면 세션에 넣어두기
-			
 			// context.setAttribute(vo.getEmail(), true);
 			
 			mav.setViewName("mainPage");		// mainpage로 이동
@@ -125,7 +124,7 @@ public class AuthController {
 	@RequestMapping(value="/phoneCheckHandle.do", produces="application/json;charset=utf-8")	// 컨트롤러 여기 타고 들어옴, 폰번호 중복확인
 	@ResponseBody
 	public String phoneCheckHandle(@RequestParam String pcheck) {	// parameter를 pcheck로 받아옴
-		System.out.println("폰 첵크 : ");
+		System.out.println("폰 체크 : ");
 		System.out.println(pcheck);
 		int r = memberDao.phoneCheck(pcheck);
 		String t;

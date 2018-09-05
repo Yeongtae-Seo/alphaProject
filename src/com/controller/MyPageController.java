@@ -1,5 +1,10 @@
 package com.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +16,17 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dao.MemberDao;
+import com.dao.MyTicketDao;
 import com.model.MemberVo;
+import com.model.MyTicketVo;
 
 @Controller
 @RequestMapping("/myPage")
 public class MyPageController {
 	@Autowired
 	MemberDao memberDao;
+	@Autowired
+	MyTicketDao myTicketDao;
 	
 	@RequestMapping("/myPage.do")	// 주소를 치면 myPage로 찾아감
 	public ModelAndView myPageHandle(WebRequest webRequest ) {	// webRequest로 세션값을 받아옴
@@ -85,14 +94,36 @@ public class MyPageController {
 		
 	}
 	
-	@RequestMapping("/reserveHandle.do")
-	public ModelAndView reserveHandle(WebRequest webRequest) {
+	@RequestMapping("/historyHandle.do")
+	public ModelAndView ticketingHandle(@RequestParam Map map) {
 		ModelAndView mav = new ModelAndView();
-		MemberVo mvo = (MemberVo) webRequest.getAttribute("auth", webRequest.SCOPE_SESSION);
-		mav.addObject("person",mvo);
-		mav.setViewName("reservePage");
+		System.out.println(map.get("email"));
+		List<MyTicketVo> list = myTicketDao.findList((String) map.get("email"));
+		mav.addObject("list", list);
+		mav.setViewName("ticketingPage");
 		return mav;
 	}
+	
+	
+	@RequestMapping("/cancelPage.do")	// 예매취소 완료
+	public ModelAndView cancelHandle(@RequestParam Map map) {
+		ModelAndView mav = new ModelAndView();
+		List<String> list = new ArrayList<>(map.keySet());
+		int del = 0;
+		for(int i=0; i<list.size(); i++) {
+			int no = Integer.parseInt(list.get(i));
+			del = myTicketDao.ticketDel(no);
+			myTicketDao.ticketRem(no);
+		}
+		if(del == 1) {	// 삭제되면 
+			mav.setViewName("cancelPage");
+		}else {
+			mav.setViewName("joinErr");
+		}
+		return mav;
+	}
+
+	
 	
 	
 
