@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.sql.Date;
+
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -21,7 +22,6 @@ import org.springframework.web.util.WebUtils;
 import com.dao.MemberDao;
 import com.google.gson.Gson;
 import com.model.MemberVo;
-import com.service.AuthConfig;
 import com.service.Converter;
 
 @Controller
@@ -31,9 +31,6 @@ public class AuthController {
 	MemberDao memberDao;
 	@Autowired
 	Gson gson;
-
-	@Autowired
-	AuthConfig auth;
 
 	
 	@RequestMapping("/logining.do")	// do는 컨트롤러로 갈 때
@@ -67,6 +64,7 @@ public class AuthController {
 			mav.addObject("fail", "로그인 실패"); 
 			mav.setViewName("loginPage");
 		}
+		System.out.println("아이디? : " + session.getAttribute("auth"));
 		return mav;
 	}
 	

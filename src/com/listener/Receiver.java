@@ -23,9 +23,9 @@ public class Receiver implements HttpSessionListener, HttpSessionAttributeListen
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {
-		System.out.println("sessionDestroyed..");
-		HttpSession session = se.getSession();
-		session.setAttribute("auth", null);
+		HttpSession session =se.getSession();
+		System.out.println("sessionDestroyed.." +session.getId());
+		// session.setAttribute("auth", null);
 	}
 	//=========================================================================
 	

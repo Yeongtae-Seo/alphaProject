@@ -24,14 +24,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 </style>
 
-<script>
-	var ing = false;
-	window.onbeforeunload = function(){
-
-			location.href="/logout.do";
-
-	}
-</script>
 <!-- <div class="w3-top" >
 	<div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing: 4px;">
 		<a href="#home" class="w3-bar-item w3-button">M o v i e</a> -->
@@ -44,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
 		<div class="w3-right w3-hide-small">
 			<c:choose>
 				<c:when test="${!empty sessionScope.auth}">
-					<a id="navB" href="/myPage.do" class="w3-bar-item w3-button">${sessionScope.auth.email}</a>
+
 					<c:if test="${auth.grade eq 0}">
 						<a id="navA" href="/master/showmember.do"
 							class="w3-bar-item w3-button">Master Menu</a>
