@@ -98,7 +98,7 @@ public class AuthController {
 				// 쿠키 설정을 적용
 				response.addCookie(loginCookie);
 			}
-			session.invalidate();
+//			session.invalidate();
 //		}
 		return "mainPage";
 	}

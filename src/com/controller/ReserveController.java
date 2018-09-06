@@ -57,6 +57,7 @@ public class ReserveController {
 //		List<ReserveTimeVo> timeList= reserveDao.getMovieTime(test1.format(date2));
 		List<ReserveTimeVo> timeList= reserveDao.getMovieTime(map);
 		mav.addObject("selectDay", Integer.parseInt(test2.format(date2)));
+		
 		mav.addObject("timeList", timeList);
 		if(day != 0) {
 			mav.addObject("day", day);

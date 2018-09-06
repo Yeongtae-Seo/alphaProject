@@ -7,7 +7,7 @@
 <div style="width:70%;">
 	<h2>영 화 예 매</h2>
 	<div style="background-color:#FAF4C0;">
-		<c:forEach var="day" begin="${selectDay }" end="20180910" step="1" >
+		<c:forEach var="day" begin="${selectDay }" end="20180930" step="1" >
 			<a href="/reserve/page.do?day=${day }"><button class="w3-button w3-hover-light-grey" >${day%201809 } </button></a>
 		</c:forEach>
 	</div>
