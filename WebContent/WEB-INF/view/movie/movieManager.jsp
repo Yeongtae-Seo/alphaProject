@@ -94,4 +94,5 @@
                 obj[i].checked = false;
             }
         }
+    }
 </script>

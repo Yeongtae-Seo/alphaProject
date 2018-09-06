@@ -24,16 +24,18 @@ public class MovieController {
 	@Autowired
 	MovieDao moviedao;
 
+	
 	//영화 페이지
 	@RequestMapping("/movieList.do")
-	public ModelAndView movieListHandle() {
+	public ModelAndView movieListHandle(@RequestParam("now") int now) {
 
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("movie", moviedao.getMovieGrade());  //영화 평점순으로 정렬하여 데이터 가져오기
+		mav.addObject("movie", moviedao.getMovieGrade(now));  //영화 평점순으로 정렬하여 데이터 가져오기
 		mav.setViewName("movie");
 
 		return mav;
 	}
+	
 	
 	//영화 관리자 페이지
 	@RequestMapping("/movieManager.do")
@@ -50,7 +52,8 @@ public class MovieController {
 	
 	//영화 상세 페이지
 	@RequestMapping("/movieDetail.do")
-	public ModelAndView detailHandle(@RequestParam("num") int num,@RequestParam(value="p", defaultValue="1") int p ,HttpSession session) {
+	public ModelAndView detailHandle(@RequestParam("num") int num, 
+			@RequestParam(value="p", defaultValue="1") int p ,HttpSession session) {
 		
 		//===========페이징 처리용
 		int count = moviedao.getReviewCount(num);  //해당 영화의 전체 리뷰 갯수 가져오기 
@@ -78,7 +81,8 @@ public class MovieController {
 		mav.addObject("movie", moviedao.getMovie(num));  //영화 전체 정보 가져오기		
 		mav.addObject("g",moviedao.findGradeInc(num));  //평점 처리용 테이블에 있는지 확인용
 		mav.addObject("num",num);  //영화 번호
-		mav.addObject("image", moviedao.getMovieGrade()); //영화 이미지 가져오려고
+		mav.addObject("image", moviedao.getImage(num)); //영화 메인 포스터 이미지
+		System.out.println(moviedao.getImage(num));
 		mav.addObject("page",pages);  //페이징 처리용
 		mav.addObject("limit",moviedao.getReviewLimit(num, p));
 		if(session.getAttribute("auth") == null) {
