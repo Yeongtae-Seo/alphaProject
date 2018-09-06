@@ -7,7 +7,7 @@
 <div align="center">
 	<h1>계정 삭제 비밀번호 확인</h1>
 	<br />
-	<form class="w3-container" action="/confirmHandle.do" method="post" autocomplete="off">
+	<form class="w3-container" action="/myPage/confirmHandle.do" method="post" autocomplete="off">
 		<div align="center" style="width: 500px">
 			<input type="hidden" value="${person.email }" name="email" />
 			<b>${person.email }</b><br/><br/>
