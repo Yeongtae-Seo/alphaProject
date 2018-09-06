@@ -102,6 +102,10 @@
 			<mvc:mapping path="/index.do"/>
 			<ref bean="cert"/>
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/master/*"/>
+			<bean class="com.interceptor.MasterInterceptor"/>
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 </beans>
