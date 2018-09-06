@@ -46,7 +46,7 @@ public class QuestionController {
 
 		int count = questionDao.getQuestionByReceiverCount(vo.getEmail());
 		int max = count / 10 + ((count % 10) > 0 ? 1 : 0);
-		int page = (num/5)+ ((num % 5) > 0 ? 1 : 0);
+		int page = (num / 5) + ((num % 5) > 0 ? 1 : 0);
 		int minpage = page * 5 - 4;
 		int maxpage = page * 5;
 		if (maxpage > max) {
@@ -60,9 +60,9 @@ public class QuestionController {
 		pages.put("minpage", minpage);
 		pages.put("maxpage", maxpage);
 		pages.put("num", num);
-		
-		//System.out.println(max+"/"+page+"/"+minpage+"/"+maxpage+"/"+num);
-		
+
+		// System.out.println(max+"/"+page+"/"+minpage+"/"+maxpage+"/"+num);
+
 		mav.setViewName("el.question");
 		mav.addObject("qlist", qlist);
 		mav.addObject("page", pages);
@@ -94,11 +94,11 @@ public class QuestionController {
 		}
 		return mav;
 	}
-	
+
 	@RequestMapping("/show.do")
-	public ModelAndView showHandle(@SessionAttribute(name="auth")MemberVo vo,@RequestParam(name="no")int no) {
+	public ModelAndView showHandle(@SessionAttribute(name = "auth") MemberVo vo, @RequestParam(name = "no") int no) {
 		ModelAndView mav = new ModelAndView();
-		QuestionVo qvo= questionDao.getQuestionByNo(no);
+		QuestionVo qvo = questionDao.getQuestionByNo(no);
 		QuestionFileVo qfvo = questionDao.getQuestionFileByParent(no);
 		List<AnswerVo> avo = questionDao.getAnswerParent(no);
 		mav.setViewName("el.question2");
@@ -106,44 +106,52 @@ public class QuestionController {
 		mav.addObject("qvo", qvo);
 		mav.addObject("attach", qfvo);
 		mav.addObject("avo", avo);
-		
+
 		return mav;
 	}
-	
+
 	@RequestMapping("/delete.do")
-	public ModelAndView deleteHandle(@RequestParam(name="no")int no) {
+	public ModelAndView deleteHandle(@RequestParam(name = "no") int no) {
 		ModelAndView mav = new ModelAndView();
 		int f = questionDao.deleteQuestionfile(no);
-		int a = questionDao.deleteAnswer(no);		
+		int a = questionDao.deleteAnswer(no);
 		int r = questionDao.deleteQuestion(no);
-		if(r == 1) {
+		if (r == 1) {
 			mav.setViewName("redirect:/question/send.do");
-		}else {
+		} else {
 			mav.setViewName("el.question2");
 			mav.addObject("contents", "/WEB-INF/view/quest/error.jsp");
 		}
 		return mav;
 	}
-	
+
+	@RequestMapping("/error.do")
+	public ModelAndView errorHandle() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("el.question2");
+		mav.addObject("contents", "/WEB-INF/view/quest/error.jsp");
+
+		return mav;
+	}
+
 	@RequestMapping("/deleted.do")
 	public ModelAndView deletedHandle(@RequestParam Map map) {
 		ModelAndView mav = new ModelAndView();
 		List<String> list = new ArrayList<>(map.keySet());
-		for(int i =0;i < list.size();i++){
-			//System.out.println(list.get(i));
+		for (int i = 0; i < list.size(); i++) {
+			// System.out.println(list.get(i));
 			int no = Integer.parseInt(list.get(i));
 			questionDao.deleteQuestionfile(no);
 			questionDao.deleteAnswer(no);
 			questionDao.deleteQuestion(no);
 		}
 		mav.setViewName("redirect:/question/send.do");
-		/*if(r == 1) {
-			mav.setViewName("redirect:/question/send.do");
-		}else {
-			mav.setViewName("el.question2");
-			mav.addObject("contents", "/WEB-INF/view/quest/error.jsp");
-		}*/
+		/*
+		 * if(r == 1) { mav.setViewName("redirect:/question/send.do"); }else {
+		 * mav.setViewName("el.question2"); mav.addObject("contents",
+		 * "/WEB-INF/view/quest/error.jsp"); }
+		 */
 		return mav;
 	}
-	
-} 
+
+}
