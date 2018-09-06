@@ -67,8 +67,6 @@
 	}).render();
 </script>
 
-
-
 <!-- 
 <div class="w3-container">
   <div class="w3-panel w3-leftbar w3-blue-grey">
