@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.Date;
+
 import org.bson.types.ObjectId;
 
 public class MovieReviewVo {
@@ -10,7 +12,13 @@ public class MovieReviewVo {
 	double grade;  //평점
 	String comments;  //리뷰
 	String username;  //사용자 이름
-	String regdate;   //등록 날짜
+	Date regdate;   //등록 날짜
+	
+	@Override
+	public String toString() {
+		return "MovieReviewVo [_id=" + _id + ", num=" + num + ", email=" + email + ", grade=" + grade + ", comments="
+				+ comments + ", username=" + username + ", regdate=" + regdate + "]";
+	}
 	
 	public ObjectId get_id() {
 		return _id;
@@ -48,17 +56,16 @@ public class MovieReviewVo {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	@Override
-	public String toString() {
-		return "MovieReviewVo [_id=" + _id + ", num=" + num + ", email=" + email + ", grade=" + grade + ", comments="
-				+ comments + ", username=" + username + ", regdate=" + regdate + "]";
-	}
+	
+	
+	
+	
 	
 	
 	

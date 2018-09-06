@@ -27,9 +27,9 @@
 	</select>
 	
 	<!-- 5.평점순 가져오기-->
-	<select id="getMovieGrade" resultType="java.util.HashMap">
-		select * from (select a.num, a.moviename,a.grade,r.rating from (select * from movie_detail) 
-		a left join rating r on a.ratingcode = r.id) u left join movie_image b on b.parent = u.num order by u.grade desc
+	<select id="getMovieGrade" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+		select * from (select a.num, a.moviename,a.grade,a.now,r.rating from (select * from movie_detail) 
+		a left join rating r on a.ratingcode = r.id) u left join movie_image b on b.parent = u.num where now=#{now} order by u.grade desc
 	</select>
 	
 	<!-- 6.영화 장르 가져오기 -->
@@ -42,6 +42,10 @@
 		select * from rating 
 	</select>
 
+	<!-- 16.영화 상세페이지에 사용할 메인 포스터 이미지 가져오기 -->
+	<select id="getImage" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+		select * from movie_image where parent=#{parent}
+	</select>
 </mapper>
 
 

@@ -42,8 +42,8 @@ public class MovieDao {
 		return template.selectList("movie.getMovie",num);
 	}
 	// 5.영화 평점순 가져오기
-	public List getMovieGrade() {
-		return template.selectList("movie.getMovieGrade");
+	public List getMovieGrade(int now) {
+		return template.selectList("movie.getMovieGrade",now);
 	}
 	//6.영화 장르 가져오기
 	public List getGenre() {
@@ -53,6 +53,11 @@ public class MovieDao {
 	public List getRating() {
 		return template.selectList("movie.getRating");
 	}
+	//16.영화 상세페이지에 사용할 메인 포스터 이미지 가져오기
+	public List getImage(int parent) {
+		return template.selectList("movie.getImage",parent);
+	}
+	
 	//========================================================
 	//8.mongoDB 리뷰 등록
 	public void addReview(MovieReviewVo vo) {
@@ -105,6 +110,8 @@ public class MovieDao {
 		
 		return list.subList(start, end);  //잘라서 가져오기
 	}
+
+
 }
 
 

@@ -107,7 +107,7 @@ em#re {
 			<c:if test="${!vs.last }">,</c:if>
 		</c:forTokens>
 		<br/><br/><br/>
-		<a href="/reserve/page.do"><button class="w3-button w3-light-grey">예매하기</button></a>
+		<a href="/reserve/page.do?day=0"><button class="w3-button w3-light-grey">예매하기</button></a>
 	</div>
 	<div class="w3-col w3-container" style="width: 26%"></div>
 </div>
