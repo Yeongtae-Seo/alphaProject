@@ -28,7 +28,7 @@
 			<button class="w3-button w3-black w3-round-large" type="reset">reset</button>
 		</p>
 	<p align="left">
-		<a href="/withdraw.do"><button class="w3-button w3-black w3-round-large" type="button">withdrawal</button></a>
+		<a href="/myPage/withdraw.do"><button class="w3-button w3-black w3-round-large" type="button">withdrawal</button></a>
 	</p>
 		
 	</form>
