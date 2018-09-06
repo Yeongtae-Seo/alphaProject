@@ -1,8 +1,7 @@
 package com.controller;
 
 import java.sql.Date;
-import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -41,13 +40,25 @@ public class AuthController {
 		
 		System.out.println(map);
 		MemberVo vo = memberDao.findByEmailAndPass(map);
-		if(auth.map.containsKey(vo.getEmail())) {
-			((HttpSession) auth.map.get(vo.getEmail())).setAttribute("auth", null);;
-			auth.map.put(vo.getEmail(), session);
-		}else {
-			auth.map.put(vo.getEmail(), session);
-		}
 
+
+		if(vo != null) {
+			if(auth.map.containsKey(vo.getEmail())) {
+				((HttpSession) auth.map.get(vo.getEmail())).setAttribute("auth", null);
+				auth.map.put(vo.getEmail(), session);
+			}else {
+				auth.map.put(vo.getEmail(), session);
+			}	
+		}
+		if(vo != null) {
+			if(auth.map.containsKey(vo.getEmail())) {	// 중복로그인 방지
+				((HttpSession) auth.map.get(vo.getEmail())).setAttribute("auth", null);;
+				auth.map.put(vo.getEmail(), session);
+			}else {
+				auth.map.put(vo.getEmail(), session);
+			}
+
+		}
 		
 		if(vo != null) {
 			session.setAttribute("auth", vo);	// 로그인 성공하면 세션에 넣어두기

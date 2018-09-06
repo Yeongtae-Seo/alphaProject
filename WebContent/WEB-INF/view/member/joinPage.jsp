@@ -9,7 +9,7 @@
 	<br />
 	<form class="w3-container" action="/joinHandle.do" method="post" autocomplete="off">
 		<div align="center" style="width: 500px">
-			<label>- Email</label>
+			<label>- Email</label>	<!-- model 타입으로 받으려면 name을 vo와 맞춰서 지정 폼은 name따라서 오고 id는 주로 스크립트에서 씀  -->
 			<input class="w3-input" type="text" name="email" id="email" placeholder="xxx@email.com" required />
 			<span id="emailCheck"></span>	<!-- id 똑같으면 안 됨 이메일형식맞는지 알림 -->
 			<label>- Password</label><br/>
