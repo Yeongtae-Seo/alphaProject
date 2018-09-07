@@ -14,34 +14,43 @@
 	<div >
 		${day }
 		<h3>1관</h3>
-		<c:forEach items="${timeList }" var="list">
-			<c:choose>
+		<c:forEach items="${timeList1 }" var="list">
+			<%-- <c:choose>
 				<c:when test="${list.screenCode == 10 }">
 					<a href="/reserve/selectSeat.do?reserveCode=${list.timeCode }">
 						<button class="w3-button w3-border w3-hover-light-grey" style="width:10%;">${list.movieName}<hr/>${list.startTime }</button>
 					</a>
 				</c:when>
-			</c:choose>
+			</c:choose> --%>
+				<a href="/reserve/selectSeat.do?reserveCode=${list.timeCode }">
+						<button class="w3-button w3-border w3-hover-light-grey" style="width:10%;">${list.movieName}<hr/>${list.startTime }</button>
+					</a>
 		</c:forEach>
 		
 		<h3>2관</h3>
-		<c:forEach items="${timeList }" var="list">
-			<c:choose>
+		<c:forEach items="${timeList2 }" var="list">
+			<%-- <c:choose>
 				<c:when test="${list.screenCode == 20 }">
 					<a href="/reserve/selectSeat.do?reserveCode=${list.timeCode }">
 						<button class="w3-button w3-border w3-hover-light-grey" style="width:10%;">${list.movieName}<hr/>${list.startTime }</button>
 					</a>
 				</c:when>
-			</c:choose>
+			</c:choose> --%>
+			<a href="/reserve/selectSeat.do?reserveCode=${list.timeCode }">
+						<button class="w3-button w3-border w3-hover-light-grey" style="width:10%;">${list.movieName}<hr/>${list.startTime }</button>
+					</a>
 		</c:forEach>
 		
 		<h3>3관</h3>
-		<c:forEach items="${timeList }" var="list">
-			<c:choose>
+		<c:forEach items="${timeList3 }" var="list">
+			<%-- <c:choose>
 				<c:when test="${list.screenCode == 30 }">
 					<button class="w3-button w3-border w3-hover-light-grey" style="width:10%;">${list.movieName}<hr/>${list.startTime }</button>
 				</c:when>
-			</c:choose>
+			</c:choose> --%>
+			<a href="/reserve/selectSeat.do?reserveCode=${list.timeCode }">
+						<button class="w3-button w3-border w3-hover-light-grey" style="width:10%;">${list.movieName}<hr/>${list.startTime }</button>
+					</a>
 		</c:forEach>
 		
 		<%-- <h3>4관</h3>

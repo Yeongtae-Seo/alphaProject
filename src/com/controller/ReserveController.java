@@ -2,6 +2,7 @@ package com.controller;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +59,30 @@ public class ReserveController {
 		List<ReserveTimeVo> timeList= reserveDao.getMovieTime(map);
 		mav.addObject("selectDay", Integer.parseInt(test2.format(date2)));
 		
+		List<ReserveTimeVo> timeList1 = new ArrayList<>() ;
+		List<ReserveTimeVo> timeList2 = new ArrayList<>() ;
+		List<ReserveTimeVo> timeList3 = new ArrayList<>() ;
+		
+		for(int i = 0 ; i<timeList.size(); i++) {
+			ReserveTimeVo a = timeList.get(i);
+			if(a.getScreenCode() == 10) {
+				timeList1.add(a);
+			}
+			else if(a.getScreenCode() == 20) {
+				timeList2.add(a);
+			}
+			else if(a.getScreenCode() == 30) {
+				timeList3.add(a);
+			}
+		}
+		System.out.println(timeList1);
+		System.out.println(timeList2);
+		System.out.println(timeList3);
+		
 		mav.addObject("timeList", timeList);
+		mav.addObject("timeList1", timeList1);
+		mav.addObject("timeList2", timeList2);
+		mav.addObject("timeList3", timeList3);
 		if(day != 0) {
 			mav.addObject("day", day);
 		}else {
